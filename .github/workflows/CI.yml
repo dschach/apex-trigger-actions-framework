@@ -22,8 +22,8 @@ jobs:
           node-version: "lts/*"
           cache: "npm"
 
-      - name: "Install NPM"
-        run: npm ci
+      #- name: "Install NPM"
+      #  run: npm install
 
       - name: Install Salesforce CLI + Scanner
         run: |
