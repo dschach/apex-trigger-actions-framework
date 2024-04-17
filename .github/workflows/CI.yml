@@ -33,6 +33,7 @@ jobs:
           sf plugins install @salesforce/sfdx-scanner
 
       - name: Run SFDX Scanner - Report findings as comments
+        if: github.event_name == 'pull_request'
         uses: mitchspano/sfdx-scan-pull-request@v0.1.16
         with:
           severity-threshold: 4
@@ -40,7 +41,12 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+  test:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
       - name: Authenticate into DevHub
+        id: authenticate
         run: |
           echo "${SALESFORCE_JWT_SECRET_KEY}" > server.key
           sf org login jwt --client-id ${{ secrets.SALESFORCE_CONSUMER_KEY }} --jwt-key-file server.key --username ${{ secrets.SALESFORCE_DEVHUB_USERNAME}} --set-default-dev-hub --alias devhub
