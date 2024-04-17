@@ -14,10 +14,10 @@ pass the list of objects, Apex actions, or Flow actions as the input parameter.
 The `isBypassed` method will return a list of booleans indicating whether the bypass is set
 to `true` for each of the specified objects, Apex actions, or Flow actions.
 
-
 **Group** Trigger Actions Framework
 
 ## Methods
+
 ### `public static List<Boolean> isBypassed(List<Request> requests)`
 
 `INVOCABLEMETHOD`
@@ -26,22 +26,25 @@ This method checks if the bypass is set to `true` for the specified objects, Ape
 
 #### Parameters
 
-|Param|Description|
-|---|---|
-|`requests`|A list of the objects, Apex actions, or Flow actions to check the bypasses for.|
+| Param      | Description                                                                     |
+| ---------- | ------------------------------------------------------------------------------- |
+| `requests` | A list of the objects, Apex actions, or Flow actions to check the bypasses for. |
 
 #### Returns
 
-|Type|Description|
-|---|---|
-|`List<Boolean>`|A list of booleans indicating whether the bypass is set to `true` for each of the specified objects, Apex actions, or Flow actions.|
+| Type            | Description                                                                                                                         |
+| --------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| `List<Boolean>` | A list of booleans indicating whether the bypass is set to `true` for each of the specified objects, Apex actions, or Flow actions. |
 
 ---
+
 ## Classes
+
 ### Request
 
 The `Request` class is a class that represents a request to check if the bypass is set to `true` for a specific object, Apex action, or Flow action.
 To use the `Request` class, you must specify the following properties:
+
 - `name`: The API name of the object, Apex action, or Flow action to check the bypass for.
 - `bypassType`: The type of bypass to check. Valid values are `Apex`, `Flow`, or `Object`.
 
@@ -49,11 +52,11 @@ To use the `Request` class, you must specify the following properties:
 
 ##### `public bypassType` → `String`
 
-`INVOCABLEVARIABLE` 
+`INVOCABLEVARIABLE`
 
 ##### `public name` → `String`
 
-`INVOCABLEVARIABLE` 
+`INVOCABLEVARIABLE`
 
 ---
 

@@ -10,10 +10,10 @@ To use the `TriggerActionFlowClearAllBypasses` class, you must first create a li
 You can then call the `clearAllBypasses` method of the `TriggerActionFlowClearAllBypasses` class and pass the list of objects, Apex actions, or Flow actions as the input parameter.
 The `clearAllBypasses` method will clear all bypasses for the specified objects, Apex actions, or Flow actions.
 
-
 **Group** Trigger Actions Framework
 
 ## Methods
+
 ### `public static void clearAllBypasses(List<String> requests)`
 
 `INVOCABLEMETHOD`
@@ -22,8 +22,8 @@ This method clears all bypasses for the specified objects, Apex actions, or Flow
 
 #### Parameters
 
-|Param|Description|
-|---|---|
-|`requests`|A list of the objects, Apex actions, or Flow actions to clear the bypasses for.|
+| Param      | Description                                                                     |
+| ---------- | ------------------------------------------------------------------------------- |
+| `requests` | A list of the objects, Apex actions, or Flow actions to clear the bypasses for. |
 
 ---
