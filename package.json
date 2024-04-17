@@ -4,15 +4,16 @@
 	"version": "1.0.0",
 	"description": "Apex Trigger Actions Framework",
 	"scripts": {
-		"prettier": "prettier --write \"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,yaml,yml}\"",
-		"prettier:verify": "prettier --list-different \"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,yaml,yml}\""
+		"prepare": "husky",
+		"prettier": "prettier --write \"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}\"",
+		"prettier:verify": "prettier --list-different \"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}\""
 	},
 	"devDependencies": {
-		"@prettier/plugin-xml": "^0.13.1",
-		"husky": "^6.0.0",
-		"lint-staged": "^10.5.4",
-		"prettier": "3.0.2",
-		"prettier-plugin-apex": "2.0.1"
+		"@prettier/plugin-xml": "^3.4.1",
+		"husky": "^9.0.11",
+		"lint-staged": "^15.2.2",
+		"prettier": "3.2.5",
+		"prettier-plugin-apex": "2.1.0"
 	},
 	"husky": {
 		"hooks": {
@@ -23,8 +24,6 @@
 		"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}": [
 			"prettier --write"
 		],
-		"**/{aura|lwc}/**": [
-			"eslint"
-		]
+		"**/{aura|lwc}/**": ["eslint"]
 	}
 }
