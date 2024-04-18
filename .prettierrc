@@ -1,6 +1,6 @@
 {
   "trailingComma": "none",
-  "xmlSelfClosingSpace": false,
+  "xmlSelfClosingSpace": true,
   "apexInsertFinalNewline": true,
   "bracketSameLine": true,
   "endOfLine": "lf",
