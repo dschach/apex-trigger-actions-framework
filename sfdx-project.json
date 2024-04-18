@@ -6,7 +6,8 @@
 			"package": "Trigger Actions Framework",
 			"versionName": "Version 0.2",
 			"versionNumber": "0.2.8.NEXT"
-		}
+		},
+		{ "path": "trigger-actions-framework/unpackaged", "default": false }
 	],
 	"namespace": "",
 	"sfdcLoginUrl": "https://login.salesforce.com",
