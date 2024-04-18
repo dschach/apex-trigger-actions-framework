@@ -2,8 +2,7 @@
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Only_One_Context</fullName>
     <active>true</active>
-    <description
-	>Throws an error if the user selects more than one context.</description>
+    <description>Throws an error if the user selects more than one context.</description>
     <errorConditionFormula>OR(
 	NOT(ISBLANK(Before_Insert__c)) &amp;&amp;
 	OR(

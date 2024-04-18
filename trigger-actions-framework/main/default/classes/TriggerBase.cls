@@ -52,7 +52,6 @@ public inherited sharing virtual class TriggerBase {
 	private static Integer existingDmlRowsOffset = 0;
 	private static Integer rowsLeftToProcess;
 	private static TriggerBase.Stack contextStack = new TriggerBase.Stack();
-	private String lastProcessedContext;
 	private static Boolean suppressFinalizeExecution = false;
 	private static TriggerBase instanceToFinalize;
 
