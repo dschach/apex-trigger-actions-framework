@@ -176,44 +176,21 @@ public inherited sharing virtual class TriggerBase {
 		setInstanceToFinalize();
 		setRowsLeftToProcess();
 		TriggerBase.contextStack.push(this.contextKey);
-		if (
-			this.context == System.TriggerOperation.BEFORE_INSERT &&
-			this instanceof TriggerAction.BeforeInsert
-		) {
+		if (this.context == System.TriggerOperation.BEFORE_INSERT && this instanceof TriggerAction.BeforeInsert) {
 			((TriggerAction.BeforeInsert) this).beforeInsert(this.triggerNew);
-		} else if (
-			this.context == System.TriggerOperation.AFTER_INSERT &&
-			this instanceof TriggerAction.AfterInsert
-		) {
+		} else if (this.context == System.TriggerOperation.AFTER_INSERT && this instanceof TriggerAction.AfterInsert) {
 			((TriggerAction.AfterInsert) this).afterInsert(this.triggerNew);
-		} else if (
-			this.context == System.TriggerOperation.BEFORE_UPDATE &&
-			this instanceof TriggerAction.BeforeUpdate
-		) {
+		} else if (this.context == System.TriggerOperation.BEFORE_UPDATE && this instanceof TriggerAction.BeforeUpdate) {
 			this.incrementUpdateCounts(this.context, this.triggerNew);
-			((TriggerAction.BeforeUpdate) this)
-				.beforeUpdate(this.triggerNew, this.triggerOld);
-		} else if (
-			this.context == System.TriggerOperation.AFTER_UPDATE &&
-			this instanceof TriggerAction.AfterUpdate
-		) {
+			((TriggerAction.BeforeUpdate) this).beforeUpdate(this.triggerNew, this.triggerOld);
+		} else if (this.context == System.TriggerOperation.AFTER_UPDATE && this instanceof TriggerAction.AfterUpdate) {
 			this.incrementUpdateCounts(this.context, this.triggerNew);
-			((TriggerAction.AfterUpdate) this)
-				.afterUpdate(this.triggerNew, this.triggerOld);
-		} else if (
-			this.context == System.TriggerOperation.BEFORE_DELETE &&
-			this instanceof TriggerAction.BeforeDelete
-		) {
+			((TriggerAction.AfterUpdate) this).afterUpdate(this.triggerNew, this.triggerOld);
+		} else if (this.context == System.TriggerOperation.BEFORE_DELETE && this instanceof TriggerAction.BeforeDelete) {
 			((TriggerAction.BeforeDelete) this).beforeDelete(this.triggerOld);
-		} else if (
-			this.context == System.TriggerOperation.AFTER_DELETE &&
-			this instanceof TriggerAction.AfterDelete
-		) {
+		} else if (this.context == System.TriggerOperation.AFTER_DELETE && this instanceof TriggerAction.AfterDelete) {
 			((TriggerAction.AfterDelete) this).afterDelete(this.triggerOld);
-		} else if (
-			this.context == System.TriggerOperation.AFTER_UNDELETE &&
-			this instanceof TriggerAction.AfterUndelete
-		) {
+		} else if (this.context == System.TriggerOperation.AFTER_UNDELETE && this instanceof TriggerAction.AfterUndelete) {
 			((TriggerAction.AfterUndelete) this).afterUndelete(this.triggerNew);
 		}
 		checkForEndOfTriggerProcessing();
@@ -246,14 +223,9 @@ public inherited sharing virtual class TriggerBase {
 	protected virtual void finalizeDmlOperation() {
 	}
 
-	private void incrementUpdateCounts(
-		System.TriggerOperation triggerContext,
-		List<SObject> records
-	) {
+	private void incrementUpdateCounts(System.TriggerOperation triggerContext, List<SObject> records) {
 		for (SObject obj : records) {
-			Map<Id, Integer> idToUpdateCount = CONTEXT_TO_UPDATE_COUNT.get(
-				triggerContext
-			);
+			Map<Id, Integer> idToUpdateCount = CONTEXT_TO_UPDATE_COUNT.get(triggerContext);
 			Integer updateCount = idToUpdateCount.get(obj.Id);
 			if (updateCount == null) {
 				updateCount = 0;
@@ -312,10 +284,7 @@ public inherited sharing virtual class TriggerBase {
 	protected String sObjectName {
 		get {
 			if (sObjectName == null) {
-				sObjectName = this.sObjectType.getDescribe(
-						SObjectDescribeOptions.DEFERRED
-					)
-					.getName();
+				sObjectName = this.sObjectType.getDescribe(SObjectDescribeOptions.DEFERRED).getName();
 			}
 			return sObjectName;
 		}
@@ -357,9 +326,7 @@ public inherited sharing virtual class TriggerBase {
 
 	private Integer triggerSize {
 		get {
-			return triggerNew != null
-				? triggerNew.size()
-				: triggerOld != null ? triggerOld.size() : 0;
+			return triggerNew != null ? triggerNew.size() : triggerOld != null ? triggerOld.size() : 0;
 		}
 	}
 

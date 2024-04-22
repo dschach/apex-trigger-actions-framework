@@ -38,10 +38,7 @@ private class TriggerActionFlowTest {
 		Name = MY_ACCOUNT,
 		Id = TriggerTestUtility.getFakeId(Schema.Account.SObjectType)
 	);
-	private static Account oldAccount = new Account(
-		Name = OLD_NAME,
-		Id = myAccount.Id
-	);
+	private static Account oldAccount = new Account(Name = OLD_NAME, Id = myAccount.Id);
 	private static Account myAccountAfterFlow = myAccount.clone(true);
 	private static List<SObject> newList = new List<SObject>{ myAccount };
 	private static List<SObject> oldList = new List<SObject>{ oldAccount };
@@ -50,11 +47,7 @@ private class TriggerActionFlowTest {
 
 	private static Invocable.Action.Result successResult = new InvocableActionResultBuilder()
 		.setSuccess(true)
-		.setOutputParameters(
-			new Map<String, Object>{
-				TriggerActionConstants.RECORD_VARIABLE => myAccountAfterFlow
-			}
-		)
+		.setOutputParameters(new Map<String, Object>{ TriggerActionConstants.RECORD_VARIABLE => myAccountAfterFlow })
 		.build();
 
 	static {
@@ -63,9 +56,7 @@ private class TriggerActionFlowTest {
 		actionFlow.allowRecursion = true;
 		myAccountAfterFlow.Name = FOO;
 		myAccountAfterFlow.addError(TEST);
-		TriggerActionFlow.invocableAction = new FakeInvocableAction(
-			new List<Invocable.Action.Result>{ successResult }
-		);
+		TriggerActionFlow.invocableAction = new FakeInvocableAction(new List<Invocable.Action.Result>{ successResult });
 	}
 
 	@IsTest
@@ -134,22 +125,14 @@ private class TriggerActionFlowTest {
 		System.Assert.areEqual(FOO, myAccount.Name, NAME_SET_FROM_FLOW);
 		System.Assert.areEqual(true, myAccount.hasErrors(), ERROR_SHOULD_BE_ADDED);
 		System.Assert.areEqual(1, myAccount.getErrors().size(), ONE_ERROR);
-		System.Assert.areEqual(
-			TEST,
-			myAccount.getErrors()[0].getMessage(),
-			ERROR_MESSAGE_SHOULD_MATCH
-		);
+		System.Assert.areEqual(TEST, myAccount.getErrors()[0].getMessage(), ERROR_MESSAGE_SHOULD_MATCH);
 	}
 
 	@IsTest
 	private static void afterInsertShouldSucceed() {
 		actionFlow.afterInsert(newList);
 
-		System.Assert.areEqual(
-			false,
-			myAccount.hasErrors(),
-			ERROR_SHOULD_NOT_BE_ADDED
-		);
+		System.Assert.areEqual(false, myAccount.hasErrors(), ERROR_SHOULD_NOT_BE_ADDED);
 	}
 
 	@IsTest
@@ -159,11 +142,7 @@ private class TriggerActionFlowTest {
 		System.Assert.areEqual(FOO, myAccount.Name, NAME_SET_FROM_FLOW);
 		System.Assert.areEqual(true, myAccount.hasErrors(), ERROR_SHOULD_BE_ADDED);
 		System.Assert.areEqual(1, myAccount.getErrors().size(), ONE_ERROR);
-		System.Assert.areEqual(
-			TEST,
-			myAccount.getErrors()[0].getMessage(),
-			ERROR_MESSAGE_SHOULD_MATCH
-		);
+		System.Assert.areEqual(TEST, myAccount.getErrors()[0].getMessage(), ERROR_MESSAGE_SHOULD_MATCH);
 	}
 
 	@IsTest
@@ -180,11 +159,7 @@ private class TriggerActionFlowTest {
 	private static void afterUpdateShouldSucceed() {
 		actionFlow.afterUpdate(newList, oldList);
 
-		System.Assert.areEqual(
-			false,
-			myAccount.hasErrors(),
-			ERROR_SHOULD_NOT_BE_ADDED
-		);
+		System.Assert.areEqual(false, myAccount.hasErrors(), ERROR_SHOULD_NOT_BE_ADDED);
 	}
 
 	@IsTest
@@ -194,44 +169,28 @@ private class TriggerActionFlowTest {
 
 		actionFlow.afterUpdate(newList, oldList);
 
-		System.Assert.areEqual(
-			false,
-			myAccount.hasErrors(),
-			ERROR_SHOULD_NOT_BE_ADDED
-		);
+		System.Assert.areEqual(false, myAccount.hasErrors(), ERROR_SHOULD_NOT_BE_ADDED);
 	}
 
 	@IsTest
 	private static void beforeDeleteShouldSucceed() {
 		actionFlow.beforeDelete(oldList);
 
-		System.Assert.areEqual(
-			false,
-			oldAccount.hasErrors(),
-			ERROR_SHOULD_NOT_BE_ADDED
-		);
+		System.Assert.areEqual(false, oldAccount.hasErrors(), ERROR_SHOULD_NOT_BE_ADDED);
 	}
 
 	@IsTest
 	private static void afterDeleteShouldSucceed() {
 		actionFlow.afterDelete(oldList);
 
-		System.Assert.areEqual(
-			false,
-			oldAccount.hasErrors(),
-			ERROR_SHOULD_NOT_BE_ADDED
-		);
+		System.Assert.areEqual(false, oldAccount.hasErrors(), ERROR_SHOULD_NOT_BE_ADDED);
 	}
 
 	@IsTest
 	private static void afterUndeleteShouldSucceed() {
 		actionFlow.afterUndelete(oldList);
 
-		System.Assert.areEqual(
-			false,
-			myAccount.hasErrors(),
-			ERROR_SHOULD_NOT_BE_ADDED
-		);
+		System.Assert.areEqual(false, myAccount.hasErrors(), ERROR_SHOULD_NOT_BE_ADDED);
 	}
 
 	@IsTest
@@ -248,24 +207,18 @@ private class TriggerActionFlowTest {
 
 		System.Assert.areEqual(
 			true,
-			myException.getMessage()
-				.contains(TriggerActionFlow.RECORD_VARIABLE_NOT_FOUND_ERROR),
+			myException.getMessage().contains(TriggerActionFlow.RECORD_VARIABLE_NOT_FOUND_ERROR),
 			EXCEPTION_SHOULD_HAVE_THE_CORRECT_MESSAGE
 		);
 	}
 
 	@IsTest
 	private static void noRecordMutationsShouldSucceed() {
-		successResult.getOutputParameters()
-			.put(TriggerActionConstants.RECORD_VARIABLE, myAccount);
+		successResult.getOutputParameters().put(TriggerActionConstants.RECORD_VARIABLE, myAccount);
 
 		actionFlow.beforeInsert(newList);
 
-		System.Assert.areEqual(
-			false,
-			myAccount.hasErrors(),
-			ERROR_SHOULD_NOT_BE_ADDED
-		);
+		System.Assert.areEqual(false, myAccount.hasErrors(), ERROR_SHOULD_NOT_BE_ADDED);
 	}
 
 	@IsTest
@@ -274,18 +227,9 @@ private class TriggerActionFlowTest {
 			new List<Invocable.Action.Result>{
 				new InvocableActionResultBuilder()
 					.setSuccess(false)
-					.setOutputParameters(
-						new Map<String, Object>{
-							TriggerActionConstants.RECORD_VARIABLE => myAccountAfterFlow
-						}
-					)
+					.setOutputParameters(new Map<String, Object>{ TriggerActionConstants.RECORD_VARIABLE => myAccountAfterFlow })
 					.setErrors(
-						new List<Invocable.Action.Error>{
-							new InvocableActionErrorBuilder()
-								.setCode(TEST)
-								.setMessage(FOO)
-								.build()
-						}
+						new List<Invocable.Action.Error>{ new InvocableActionErrorBuilder().setCode(TEST).setMessage(FOO).build() }
 					)
 					.build()
 			}
@@ -295,11 +239,7 @@ private class TriggerActionFlowTest {
 
 		System.Assert.areEqual(true, myAccount.hasErrors(), ERROR_SHOULD_BE_ADDED);
 		System.Assert.areEqual(1, myAccount.getErrors().size(), ONE_ERROR);
-		System.Assert.areEqual(
-			true,
-			myAccount.getErrors()[0].getMessage().contains(FOO),
-			ERROR_MESSAGE_SHOULD_MATCH
-		);
+		System.Assert.areEqual(true, myAccount.getErrors()[0].getMessage().contains(FOO), ERROR_MESSAGE_SHOULD_MATCH);
 	}
 
 	@IsTest
@@ -339,27 +279,16 @@ private class TriggerActionFlowTest {
 
 		TriggerActionFlow.clearAllBypasses();
 
-		System.Assert.areEqual(
-			0,
-			TriggerActionFlow.bypassedFlows.size(),
-			BYPASSES_SHOULD_BE_POPULATED_CORRECTLY
-		);
+		System.Assert.areEqual(0, TriggerActionFlow.bypassedFlows.size(), BYPASSES_SHOULD_BE_POPULATED_CORRECTLY);
 	}
 
 	@IsTest
 	private static void invokeFlowShouldReturnUnsuccessfulResponseWithBogusFlowName() {
 		List<Invocable.Action.Result> results = new TriggerActionFlow.InvocableAction()
-			.invokeAction(
-				BOGUS,
-				new List<Map<String, Object>>{ new Map<String, Object>() }
-			);
+			.invokeAction(BOGUS, new List<Map<String, Object>>{ new Map<String, Object>() });
 
 		System.Assert.areEqual(1, results.size(), ONE_ERROR);
-		System.Assert.areEqual(
-			false,
-			results[0].isSuccess(),
-			'It should have failed with bogus name'
-		);
+		System.Assert.areEqual(false, results[0].isSuccess(), 'It should have failed with bogus name');
 	}
 
 	private virtual class FakeInvocableAction extends TriggerActionFlow.InvocableAction {
@@ -367,10 +296,7 @@ private class TriggerActionFlowTest {
 		public FakeInvocableAction(List<Invocable.Action.Result> result) {
 			this.result = result;
 		}
-		public override List<Invocable.Action.Result> invokeAction(
-			String flowApiName,
-			List<Map<String, Object>> inputs
-		) {
+		public override List<Invocable.Action.Result> invokeAction(String flowApiName, List<Map<String, Object>> inputs) {
 			return this.result;
 		}
 	}
@@ -381,9 +307,7 @@ private class TriggerActionFlowTest {
 		private Invocable.Action action;
 		private List<Invocable.Action.Error> errors;
 
-		public InvocableActionResultBuilder setOutputParameters(
-			Map<String, Object> outputParameters
-		) {
+		public InvocableActionResultBuilder setOutputParameters(Map<String, Object> outputParameters) {
 			this.outputParameters = outputParameters;
 			return this;
 		}
@@ -395,9 +319,7 @@ private class TriggerActionFlowTest {
 			this.action = action;
 			return this;
 		}
-		public InvocableActionResultBuilder setErrors(
-			List<Invocable.Action.Error> errors
-		) {
+		public InvocableActionResultBuilder setErrors(List<Invocable.Action.Error> errors) {
 			this.errors = errors;
 			return this;
 		}
@@ -434,9 +356,7 @@ private class TriggerActionFlowTest {
 
 		public Invocable.Action.error build() {
 			return (Invocable.Action.error) JSON.deserialize(
-				JSON.serialize(
-					new Map<String, Object>{ 'code' => code, 'message' => message }
-				),
+				JSON.serialize(new Map<String, Object>{ 'code' => code, 'message' => message }),
 				Invocable.Action.error.class
 			);
 		}

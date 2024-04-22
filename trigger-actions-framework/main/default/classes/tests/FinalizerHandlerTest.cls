@@ -40,47 +40,30 @@ private with sharing class FinalizerHandlerTest {
 
 	@IsTest
 	private static void noConfiguredFinalizerShouldTakeNoAction() {
-		System.Assert.isNotNull(
-			handler.allFinalizers,
-			'By default, allHandlers should return a non-null value'
-		);
+		System.Assert.isNotNull(handler.allFinalizers, 'By default, allHandlers should return a non-null value');
 
 		handler.allFinalizers = new List<DML_Finalizer__mdt>();
 
 		handler.handleDynamicFinalizers();
 
-		System.Assert.isTrue(
-			finalizerLedger.isEmpty(),
-			'There are no finalizers so no action should be taken'
-		);
+		System.Assert.isTrue(finalizerLedger.isEmpty(), 'There are no finalizers so no action should be taken');
 	}
 
 	@IsTest
 	private static void properlyConfiguredFinalizerShouldExecute() {
 		handler.allFinalizers = new List<DML_Finalizer__mdt>{
-			new DML_Finalizer__mdt(
-				Apex_Class_Name__c = TEST_FOO_FINALIZER,
-				Bypass_Permission__c = BYPASS_PERMISSION
-			)
+			new DML_Finalizer__mdt(Apex_Class_Name__c = TEST_FOO_FINALIZER, Bypass_Permission__c = BYPASS_PERMISSION)
 		};
 
 		handler.handleDynamicFinalizers();
 
-		System.Assert.areEqual(
-			FOO,
-			finalizerLedger[0],
-			'The finalizer should be dynamically instantiated and executed'
-		);
+		System.Assert.areEqual(FOO, finalizerLedger[0], 'The finalizer should be dynamically instantiated and executed');
 	}
 
 	@IsTest
 	private static void bypassedFinalizerShouldNotExecute() {
 		handler.allFinalizers = new List<DML_Finalizer__mdt>{
-			new DML_Finalizer__mdt(
-				Apex_Class_Name__c = TEST_FOO_FINALIZER,
-				Bypass_Execution__c = true,
-				Order__c = 1
-			)
+			new DML_Finalizer__mdt(Apex_Class_Name__c = TEST_FOO_FINALIZER, Bypass_Execution__c = true, Order__c = 1)
 		};
 
 		handler.handleDynamicFinalizers();
@@ -94,10 +77,7 @@ private with sharing class FinalizerHandlerTest {
 	@IsTest
 	private static void staticallyBypassedFinalizerShouldNotExecute() {
 		handler.allFinalizers = new List<DML_Finalizer__mdt>{
-			new DML_Finalizer__mdt(
-				Apex_Class_Name__c = TEST_FOO_FINALIZER,
-				Order__c = 1
-			)
+			new DML_Finalizer__mdt(Apex_Class_Name__c = TEST_FOO_FINALIZER, Order__c = 1)
 		};
 
 		FinalizerHandler.bypass(TEST_FOO_FINALIZER);
@@ -150,28 +130,14 @@ private with sharing class FinalizerHandlerTest {
 	@IsTest
 	private static void finalizersShouldExecuteInOrder() {
 		handler.allFinalizers = new List<DML_Finalizer__mdt>{
-			new DML_Finalizer__mdt(
-				Apex_Class_Name__c = TEST_FOO_FINALIZER,
-				Order__c = 1
-			),
-			new DML_Finalizer__mdt(
-				Apex_Class_Name__c = TEST_BAR_FINALIZER,
-				Order__c = 2
-			)
+			new DML_Finalizer__mdt(Apex_Class_Name__c = TEST_FOO_FINALIZER, Order__c = 1),
+			new DML_Finalizer__mdt(Apex_Class_Name__c = TEST_BAR_FINALIZER, Order__c = 2)
 		};
 
 		handler.handleDynamicFinalizers();
 
-		System.Assert.areEqual(
-			FOO,
-			finalizerLedger[0],
-			'The finalizer with the lowest order was not executed first'
-		);
-		System.Assert.areEqual(
-			BAR,
-			finalizerLedger[1],
-			'The finalizer with the highest order was not executed last'
-		);
+		System.Assert.areEqual(FOO, finalizerLedger[0], 'The finalizer with the lowest order was not executed first');
+		System.Assert.areEqual(BAR, finalizerLedger[1], 'The finalizer with the highest order was not executed last');
 	}
 
 	@IsTest
@@ -189,10 +155,7 @@ private with sharing class FinalizerHandlerTest {
 		System.Assert.isNotNull(myException, EXCEPTION_SHOULD_BE_THROWN);
 
 		System.Assert.areEqual(
-			String.format(
-				FinalizerHandler.INVALID_CLASS_ERROR_FINALIZER,
-				new List<String>{ BOGUS_CLASS_NAME }
-			),
+			String.format(FinalizerHandler.INVALID_CLASS_ERROR_FINALIZER, new List<String>{ BOGUS_CLASS_NAME }),
 			myException.getMessage(),
 			EXCEPTION_SHOULD_HAVE_CORRECT_MESSAGE
 		);
@@ -200,9 +163,7 @@ private with sharing class FinalizerHandlerTest {
 
 	@IsTest
 	private static void referencedClassDoesNotImplementDmlFinalizerShouldThrowException() {
-		handler.allFinalizers = new List<DML_Finalizer__mdt>{
-			new DML_Finalizer__mdt(Apex_Class_Name__c = MY_CLASS)
-		};
+		handler.allFinalizers = new List<DML_Finalizer__mdt>{ new DML_Finalizer__mdt(Apex_Class_Name__c = MY_CLASS) };
 
 		try {
 			handler.handleDynamicFinalizers();
@@ -213,10 +174,7 @@ private with sharing class FinalizerHandlerTest {
 		System.Assert.isNotNull(myException, EXCEPTION_SHOULD_BE_THROWN);
 
 		System.Assert.areEqual(
-			String.format(
-				FinalizerHandler.INVALID_TYPE_ERROR_FINALIZER,
-				new List<String>{ MY_CLASS }
-			),
+			String.format(FinalizerHandler.INVALID_TYPE_ERROR_FINALIZER, new List<String>{ MY_CLASS }),
 			myException.getMessage(),
 			EXCEPTION_SHOULD_HAVE_CORRECT_MESSAGE
 		);
@@ -280,11 +238,7 @@ private with sharing class FinalizerHandlerTest {
 
 		FinalizerHandler.clearAllBypasses();
 
-		System.Assert.areEqual(
-			0,
-			FinalizerHandler.bypassedFinalizers.size(),
-			BYPASSES_SHOULD_BE_CONFIGURED_PROPERLY
-		);
+		System.Assert.areEqual(0, FinalizerHandler.bypassedFinalizers.size(), BYPASSES_SHOULD_BE_CONFIGURED_PROPERLY);
 	}
 
 	public class FooFinalizer implements TriggerAction.DmlFinalizer {

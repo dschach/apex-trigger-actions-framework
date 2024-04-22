@@ -103,12 +103,7 @@ public virtual inherited sharing class TriggerActionFlow implements TriggerActio
 		if (flowIsBypassed()) {
 			return;
 		}
-		handleInvocableResults(
-			invokeAction(
-				getInterviewInputs(newList, TriggerActionConstants.RECORD_VARIABLE)
-			),
-			newList
-		);
+		handleInvocableResults(invokeAction(getInterviewInputs(newList, TriggerActionConstants.RECORD_VARIABLE)), newList);
 	}
 
 	/**
@@ -125,10 +120,7 @@ public virtual inherited sharing class TriggerActionFlow implements TriggerActio
 		List<sObject> oldRecordsNotYetProcessed = new List<sObject>();
 		for (Integer i = 0; i < newList.size(); i++) {
 			sObject record = newList[i];
-			if (
-				TriggerBase.idToNumberOfTimesSeenBeforeUpdate.get(record.id) == 1 ||
-				(allowRecursion == true)
-			) {
+			if (TriggerBase.idToNumberOfTimesSeenBeforeUpdate.get(record.id) == 1 || (allowRecursion == true)) {
 				recordsNotYetProcessed.add(record);
 				oldRecordsNotYetProcessed.add(oldList[i]);
 			}
@@ -157,10 +149,7 @@ public virtual inherited sharing class TriggerActionFlow implements TriggerActio
 		List<sObject> oldRecordsNotYetProcessed = new List<sObject>();
 		for (Integer i = 0; i < newList.size(); i++) {
 			sObject record = newList[i];
-			if (
-				TriggerBase.idToNumberOfTimesSeenAfterUpdate.get(record.id) == 1 ||
-				(allowRecursion == true)
-			) {
+			if (TriggerBase.idToNumberOfTimesSeenAfterUpdate.get(record.id) == 1 || (allowRecursion == true)) {
 				recordsNotYetProcessed.add(record);
 				oldRecordsNotYetProcessed.add(oldList[i]);
 			}
@@ -169,9 +158,7 @@ public virtual inherited sharing class TriggerActionFlow implements TriggerActio
 			return;
 		}
 		handleInvocableResults(
-			invokeAction(
-				getInterviewInputs(recordsNotYetProcessed, oldRecordsNotYetProcessed)
-			),
+			invokeAction(getInterviewInputs(recordsNotYetProcessed, oldRecordsNotYetProcessed)),
 			recordsNotYetProcessed
 		);
 	}
@@ -186,12 +173,7 @@ public virtual inherited sharing class TriggerActionFlow implements TriggerActio
 			return;
 		}
 		handleInvocableResults(
-			invokeAction(
-				getInterviewInputs(
-					oldList,
-					TriggerActionConstants.RECORD_PRIOR_VARIABLE
-				)
-			),
+			invokeAction(getInterviewInputs(oldList, TriggerActionConstants.RECORD_PRIOR_VARIABLE)),
 			oldList
 		);
 	}
@@ -206,12 +188,7 @@ public virtual inherited sharing class TriggerActionFlow implements TriggerActio
 			return;
 		}
 		handleInvocableResults(
-			invokeAction(
-				getInterviewInputs(
-					oldList,
-					TriggerActionConstants.RECORD_PRIOR_VARIABLE
-				)
-			),
+			invokeAction(getInterviewInputs(oldList, TriggerActionConstants.RECORD_PRIOR_VARIABLE)),
 			oldList
 		);
 	}
@@ -225,33 +202,21 @@ public virtual inherited sharing class TriggerActionFlow implements TriggerActio
 		if (flowIsBypassed()) {
 			return;
 		}
-		handleInvocableResults(
-			invokeAction(
-				getInterviewInputs(newList, TriggerActionConstants.RECORD_VARIABLE)
-			),
-			newList
-		);
+		handleInvocableResults(invokeAction(getInterviewInputs(newList, TriggerActionConstants.RECORD_VARIABLE)), newList);
 	}
 
 	private Boolean flowIsBypassed() {
 		if (String.isBlank(flowName)) {
-			throw new IllegalArgumentException(
-				TriggerActionConstants.INVALID_FLOW_NAME
-			);
+			throw new IllegalArgumentException(TriggerActionConstants.INVALID_FLOW_NAME);
 		}
 		return TriggerActionFlow.isBypassed(flowName);
 	}
 
-	private List<Invocable.Action.Result> invokeAction(
-		List<Map<String, Object>> inputs
-	) {
+	private List<Invocable.Action.Result> invokeAction(List<Map<String, Object>> inputs) {
 		return invocableAction.invokeAction(this.flowName, inputs);
 	}
 
-	private void applyFlowValues(
-		sObject stateBeforeFlow,
-		sObject stateAfterFlow
-	) {
+	private void applyFlowValues(sObject stateBeforeFlow, sObject stateAfterFlow) {
 		Boolean hasBeenMutated = false;
 		Map<String, Object> afterFlowMap = stateAfterFlow.getPopulatedFieldsAsMap();
 		for (String fieldName : afterFlowMap.keySet()) {
@@ -285,10 +250,7 @@ public virtual inherited sharing class TriggerActionFlow implements TriggerActio
 	 * @param oldList The list of old records.
 	 * @return A list of interview inputs.
 	 */
-	private List<Map<String, Object>> getInterviewInputs(
-		List<SObject> newList,
-		List<SObject> oldList
-	) {
+	private List<Map<String, Object>> getInterviewInputs(List<SObject> newList, List<SObject> oldList) {
 		List<Map<String, Object>> result = new List<Map<String, Object>>();
 		for (Integer i = 0; i < newList.size(); i++) {
 			SObject oldRecord = oldList[i];
@@ -303,10 +265,7 @@ public virtual inherited sharing class TriggerActionFlow implements TriggerActio
 		return result;
 	}
 
-	protected virtual List<Map<String, Object>> getInterviewInputs(
-		List<SObject> records,
-		String variableName
-	) {
+	protected virtual List<Map<String, Object>> getInterviewInputs(List<SObject> records, String variableName) {
 		List<Map<String, Object>> result = new List<Map<String, Object>>();
 		for (Integer i = 0; i < records.size(); i++) {
 			result.add(new Map<String, Object>{ variableName => records[i] });
@@ -314,29 +273,21 @@ public virtual inherited sharing class TriggerActionFlow implements TriggerActio
 		return result;
 	}
 
-	private void applyFieldValuesDuringBefore(
-		List<Invocable.Action.Result> results,
-		List<SObject> newList
-	) {
+	private void applyFieldValuesDuringBefore(List<Invocable.Action.Result> results, List<SObject> newList) {
 		for (Integer i = 0; i < results.size(); i++) {
 			Invocable.Action.Result result = results[i];
 			if (result.isSuccess() == true) {
 				SObject newRecordWhenFlowIsComplete = (SObject) (result.getOutputParameters()
 					.get(TriggerActionConstants.RECORD_VARIABLE));
 				if (newRecordWhenFlowIsComplete == null) {
-					throw new IllegalArgumentException(
-						this.flowName + ': ' + RECORD_VARIABLE_NOT_FOUND_ERROR
-					);
+					throw new IllegalArgumentException(this.flowName + ': ' + RECORD_VARIABLE_NOT_FOUND_ERROR);
 				}
 				applyFlowValues(newList[i], newRecordWhenFlowIsComplete);
 			}
 		}
 	}
 
-	private void handleInvocableResults(
-		List<Invocable.Action.Result> results,
-		List<SObject> records
-	) {
+	private void handleInvocableResults(List<Invocable.Action.Result> results, List<SObject> records) {
 		for (Integer i = 0; i < results.size(); i++) {
 			Invocable.Action.Result result = results[i];
 			if (result.isSuccess() == false) {
@@ -362,14 +313,8 @@ public virtual inherited sharing class TriggerActionFlow implements TriggerActio
 		 * @param inputs The list of inputs to pass to the Flow.
 		 * @return The list of results from the Flow invocation.
 		 */
-		public virtual List<Invocable.Action.Result> invokeAction(
-			String flowApiName,
-			List<Map<String, Object>> inputs
-		) {
-			Invocable.Action action = Invocable.Action.createCustomAction(
-				TriggerActionConstants.FLOW_STRING,
-				flowApiName
-			);
+		public virtual List<Invocable.Action.Result> invokeAction(String flowApiName, List<Map<String, Object>> inputs) {
+			Invocable.Action action = Invocable.Action.createCustomAction(TriggerActionConstants.FLOW_STRING, flowApiName);
 			action.setInvocations(inputs);
 			return action.invoke();
 		}

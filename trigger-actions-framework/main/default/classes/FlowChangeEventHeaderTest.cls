@@ -17,9 +17,7 @@
 @IsTest(isParallel=true)
 @SuppressWarnings('PMD.ApexDoc')
 private with sharing class FlowChangeEventHeaderTest {
-	private static FlowChangeEventHeader header = new FlowChangeEventHeader(
-		new EventBus.ChangeEventHeader()
-	);
+	private static FlowChangeEventHeader header = new FlowChangeEventHeader(new EventBus.ChangeEventHeader());
 
 	@IsTest
 	private static void shouldBeAbleToConstruct() {
@@ -33,9 +31,7 @@ private with sharing class FlowChangeEventHeaderTest {
 
 	@IsTest
 	private static void shouldBeAbleToCompare() {
-		FlowChangeEventHeader other = new FlowChangeEventHeader(
-			new EventBus.ChangeEventHeader()
-		);
+		FlowChangeEventHeader other = new FlowChangeEventHeader(new EventBus.ChangeEventHeader());
 		other.changeType = 'CREATE';
 
 		Assert.areEqual(
@@ -43,15 +39,7 @@ private with sharing class FlowChangeEventHeaderTest {
 			header,
 			'Unable to detect identical FlowChangeEventHeader objects'
 		);
-		Assert.areNotEqual(
-			header,
-			other,
-			'Unable to detect different FlowChangeEventHeader objects'
-		);
-		Assert.areNotEqual(
-			header,
-			null,
-			'Unable to detect difference between FlowChangeEventHeader and null'
-		);
+		Assert.areNotEqual(header, other, 'Unable to detect different FlowChangeEventHeader objects');
+		Assert.areNotEqual(header, null, 'Unable to detect difference between FlowChangeEventHeader and null');
 	}
 }

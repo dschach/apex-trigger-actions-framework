@@ -31,10 +31,7 @@ private class TriggerActionFlowClearBypassTest {
 
 		TriggerActionFlowClearBypass.clearBypass(requests);
 
-		System.Assert.isFalse(
-			TriggerBase.isBypassed(MY_STRING),
-			'The Object should not be bypassed'
-		);
+		System.Assert.isFalse(TriggerBase.isBypassed(MY_STRING), 'The Object should not be bypassed');
 	}
 
 	@IsTest
@@ -46,10 +43,7 @@ private class TriggerActionFlowClearBypassTest {
 
 		TriggerActionFlowClearBypass.clearBypass(requests);
 
-		System.Assert.isFalse(
-			MetadataTriggerHandler.isBypassed(MY_STRING),
-			'The Apex should be not bypassed'
-		);
+		System.Assert.isFalse(MetadataTriggerHandler.isBypassed(MY_STRING), 'The Apex should be not bypassed');
 	}
 
 	@IsTest
@@ -61,10 +55,7 @@ private class TriggerActionFlowClearBypassTest {
 
 		TriggerActionFlowClearBypass.clearBypass(requests);
 
-		System.Assert.isFalse(
-			TriggerActionFlow.isBypassed(MY_STRING),
-			'The Flow should not be bypassed'
-		);
+		System.Assert.isFalse(TriggerActionFlow.isBypassed(MY_STRING), 'The Flow should not be bypassed');
 	}
 
 	@IsTest
@@ -79,16 +70,8 @@ private class TriggerActionFlowClearBypassTest {
 			myException = e;
 		}
 
-		System.Assert.areNotEqual(
-			null,
-			myException,
-			'We should have an exception thrown in this scenario'
-		);
-		Assert.isInstanceOfType(
-			myException,
-			IllegalArgumentException.class,
-			'The exception should be of the correct type'
-		);
+		System.Assert.areNotEqual(null, myException, 'We should have an exception thrown in this scenario');
+		Assert.isInstanceOfType(myException, IllegalArgumentException.class, 'The exception should be of the correct type');
 		System.Assert.areEqual(
 			myException.getMessage(),
 			TriggerActionConstants.INVALID_TYPE,

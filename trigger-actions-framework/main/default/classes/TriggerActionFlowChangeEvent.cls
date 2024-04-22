@@ -37,19 +37,14 @@ public with sharing class TriggerActionFlowChangeEvent extends TriggerActionFlow
 	private static final String NOT_CHANGE_EVENT_ERROR = 'TriggerActionFlowChangeEvent can only be used on change events.';
 
 	@TestVisible
-	protected override List<Map<String, Object>> getInterviewInputs(
-		List<SObject> records,
-		String variableName
-	) {
+	protected override List<Map<String, Object>> getInterviewInputs(List<SObject> records, String variableName) {
 		validateInputs(records, variableName);
 		List<Map<String, Object>> result = new List<Map<String, Object>>();
 		for (Integer i = 0; i < records.size(); i++) {
 			result.add(
 				new Map<String, Object>{
 					variableName => records[i],
-					HEADER => new FlowChangeEventHeader(
-						(EventBus.ChangeEventHeader) records[i].get(CHANGE_EVENT_HEADER)
-					)
+					HEADER => new FlowChangeEventHeader((EventBus.ChangeEventHeader) records[i].get(CHANGE_EVENT_HEADER))
 				}
 			);
 		}

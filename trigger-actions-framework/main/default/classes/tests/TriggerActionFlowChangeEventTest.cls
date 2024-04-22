@@ -28,54 +28,28 @@ private with sharing class TriggerActionFlowChangeEventTest {
 	@IsTest
 	private static void wrongDataTypeShouldThrowException() {
 		try {
-			response = action.getInterviewInputs(
-				new List<SObject>{ new Account() },
-				TriggerActionConstants.RECORD_VARIABLE
-			);
+			response = action.getInterviewInputs(new List<SObject>{ new Account() }, TriggerActionConstants.RECORD_VARIABLE);
 		} catch (IllegalArgumentException e) {
 			caught = e;
 		}
 
-		Assert.isNotNull(
-			caught,
-			'The system failed to add an exception when we are expecting one'
-		);
+		Assert.isNotNull(caught, 'The system failed to add an exception when we are expecting one');
 	}
 
 	@IsTest
 	private static void emptyInputShouldProduceEmptyFlowInputs() {
-		response = action.getInterviewInputs(
-			new List<SObject>(),
-			TriggerActionConstants.RECORD_VARIABLE
-		);
+		response = action.getInterviewInputs(new List<SObject>(), TriggerActionConstants.RECORD_VARIABLE);
 
-		Assert.isNotNull(
-			response,
-			'The system produced a null input to be passed into the invocable flows'
-		);
-		Assert.areEqual(
-			0,
-			response.size(),
-			'There should be exactly zero maps in the produced invocable inputs'
-		);
+		Assert.isNotNull(response, 'The system produced a null input to be passed into the invocable flows');
+		Assert.areEqual(0, response.size(), 'There should be exactly zero maps in the produced invocable inputs');
 	}
 
 	@IsTest
 	private static void correctInputShouldProduceFlowInputs() {
-		response = action.getInterviewInputs(
-			new List<SObject>{ changeEvent },
-			TriggerActionConstants.RECORD_VARIABLE
-		);
+		response = action.getInterviewInputs(new List<SObject>{ changeEvent }, TriggerActionConstants.RECORD_VARIABLE);
 
-		Assert.isNotNull(
-			response,
-			'The system produced a null input to be passed into the invocable flows'
-		);
-		Assert.areEqual(
-			1,
-			response.size(),
-			'There should be exactly one map in the produced invocable inputs'
-		);
+		Assert.isNotNull(response, 'The system produced a null input to be passed into the invocable flows');
+		Assert.areEqual(1, response.size(), 'There should be exactly one map in the produced invocable inputs');
 		Assert.isTrue(
 			response[0].containsKey(TriggerActionConstants.RECORD_VARIABLE),
 			'The map should have a key of "record"'
