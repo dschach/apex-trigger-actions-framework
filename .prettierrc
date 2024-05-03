@@ -19,7 +19,7 @@
       "options": { "parser": "apex", "useTabs": true }
     },
     {
-      "files": "*.apex,soql",
+      "files": "*.{apex,soql}",
       "options": { "parser": "anonymous-apex" }
     },
     {
