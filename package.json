@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "description": "Apex Trigger Actions Framework",
   "scripts": {
+    "precommit": "lint-staged",
     "prepare": "husky",
     "prettier": "prettier --write \"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}\"",
     "prettier:verify": "prettier --list-different \"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}\""
