@@ -18,11 +18,6 @@
 		"prettier": "3.5.3",
 		"prettier-plugin-apex": "2.2.5"
 	},
-	"husky": {
-		"hooks": {
-			"pre-commit": "lint-staged"
-		}
-	},
 	"lint-staged": {
 		"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}": [
 			"prettier --write"
