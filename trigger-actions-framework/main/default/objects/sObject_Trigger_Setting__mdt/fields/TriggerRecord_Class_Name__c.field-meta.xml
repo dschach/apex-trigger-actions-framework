@@ -5,7 +5,7 @@
         and `recordPrior`. Both of these variables need to match the SObject type for this SObject
         Trigger Setting record.</description>
     <externalId>false</externalId>
-    <fieldManageability>SubscriberControlled</fieldManageability>
+    <fieldManageability>DeveloperControlled</fieldManageability>
     <inlineHelpText>Enter the API name of a global class which extends `TriggerRecord` and contains two global properties: `record`
         and `recordPrior`. Both of these variables need to match the SObject type for this SObject
         Trigger Setting record.</inlineHelpText>
