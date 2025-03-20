@@ -30,7 +30,11 @@ private class TriggerActionFlowIsBypassedTest {
 
 		List<Boolean> isBypassed = TriggerActionFlowIsBypassed.isBypassed(requests);
 
-		System.Assert.areEqual(1, isBypassed.size(), 'We should only have one result for our request');
+		System.Assert.areEqual(
+			1,
+			isBypassed.size(),
+			'We should only have one result for our request'
+		);
 		System.Assert.areEqual(
 			TriggerBase.isBypassed(MY_STRING),
 			isBypassed[0],
@@ -46,7 +50,11 @@ private class TriggerActionFlowIsBypassedTest {
 
 		List<Boolean> isBypassed = TriggerActionFlowIsBypassed.isBypassed(requests);
 
-		System.Assert.areEqual(1, isBypassed.size(), 'We should only have one result for our request');
+		System.Assert.areEqual(
+			1,
+			isBypassed.size(),
+			'We should only have one result for our request'
+		);
 		System.Assert.areEqual(
 			MetadataTriggerHandler.isBypassed(MY_STRING),
 			isBypassed[0],
@@ -62,7 +70,11 @@ private class TriggerActionFlowIsBypassedTest {
 
 		List<Boolean> isBypassed = TriggerActionFlowIsBypassed.isBypassed(requests);
 
-		System.Assert.areEqual(1, isBypassed.size(), 'We should only have one result for our request');
+		System.Assert.areEqual(
+			1,
+			isBypassed.size(),
+			'We should only have one result for our request'
+		);
 		System.Assert.areEqual(
 			TriggerActionFlow.isBypassed(MY_STRING),
 			isBypassed[0],

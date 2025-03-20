@@ -1,34 +1,34 @@
 {
-  "name": "apex-trigger-actions-framework",
-  "private": true,
-  "version": "1.0.0",
-  "description": "Apex Trigger Actions Framework",
-  "scripts": {
-    "precommit": "lint-staged",
-    "prepare": "husky",
-    "prettier": "prettier --write \"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}\"",
-    "prettier:verify": "prettier --list-different \"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}\""
-  },
-  "devDependencies": {
-    "@prettier/plugin-xml": "^3.4.1",
-    "eslint": "^9.22.0",
-    "eslint-config-prettier": "^10.1.1",
-    "husky": "^9.1.7",
-    "lint-staged": "^15.5.0",
-    "prettier": "3.5.3",
-    "prettier-plugin-apex": "2.2.5"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}": [
-      "prettier --write"
-    ],
-    "**/{aura|lwc}/**": [
-      "eslint"
-    ]
-  }
+	"name": "apex-trigger-actions-framework",
+	"private": true,
+	"version": "1.0.0",
+	"description": "Apex Trigger Actions Framework",
+	"scripts": {
+		"precommit": "lint-staged",
+		"prepare": "husky",
+		"prettier": "prettier --write \"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}\"",
+		"prettier:verify": "prettier --list-different \"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}\""
+	},
+	"devDependencies": {
+		"@prettier/plugin-xml": "^3.4.1",
+		"eslint": "^9.22.0",
+		"eslint-config-prettier": "^10.1.1",
+		"husky": "^9.1.7",
+		"lint-staged": "^15.5.0",
+		"prettier": "3.5.3",
+		"prettier-plugin-apex": "2.2.5"
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "lint-staged"
+		}
+	},
+	"lint-staged": {
+		"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}": [
+			"prettier --write"
+		],
+		"**/{aura|lwc}/**": [
+			"eslint"
+		]
+	}
 }

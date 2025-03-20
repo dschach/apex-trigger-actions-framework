@@ -14,7 +14,9 @@
    limitations under the License.
  */
 
-@SuppressWarnings('PMD.ApexDoc, PMD.CyclomaticComplexity, PMD.ApexUnitTestClassShouldHaveRunAs')
+@SuppressWarnings(
+	'PMD.ApexDoc, PMD.CyclomaticComplexity, PMD.ApexUnitTestClassShouldHaveRunAs'
+)
 @IsTest(isParallel=true)
 private class MetadataTriggerHandlerTest {
 	private static final String ACCOUNT = 'Account';
@@ -49,7 +51,9 @@ private class MetadataTriggerHandlerTest {
 	);
 	private static sObject_Trigger_Setting__mdt setting = new sObject_Trigger_Setting__mdt(
 		Object_API_Name__c = ACCOUNT,
-		Id = TriggerTestUtility.getFakeId(Schema.sObject_Trigger_Setting__mdt.SObjectType)
+		Id = TriggerTestUtility.getFakeId(
+			Schema.sObject_Trigger_Setting__mdt.SObjectType
+		)
 	);
 	private static MetadataTriggerHandler handler = new MetadataTriggerHandler();
 	private static Boolean executed = false;
@@ -69,7 +73,9 @@ private class MetadataTriggerHandlerTest {
 
 	@IsTest
 	private static void beforeInsertShouldSucceed() {
-		handler.beforeInsertActionMetadata = new List<Trigger_Action__mdt>{ action };
+		handler.beforeInsertActionMetadata = new List<Trigger_Action__mdt>{
+			action
+		};
 
 		handler.beforeInsert(handler.triggerNew);
 
@@ -79,7 +85,9 @@ private class MetadataTriggerHandlerTest {
 	@IsTest
 	private static void beforeInsertShouldFailWithIncorrectType() {
 		action.Apex_Class_Name__c = TEST_AFTER_INSERT;
-		handler.beforeInsertActionMetadata = new List<Trigger_Action__mdt>{ action };
+		handler.beforeInsertActionMetadata = new List<Trigger_Action__mdt>{
+			action
+		};
 
 		try {
 			handler.beforeInsert(handler.triggerNew);
@@ -105,7 +113,9 @@ private class MetadataTriggerHandlerTest {
 	@IsTest
 	private static void beforeInsertShouldFailWithIncorrectClass() {
 		action.Apex_Class_Name__c = BOGUS_CLASS_NAME;
-		handler.beforeInsertActionMetadata = new List<Trigger_Action__mdt>{ action };
+		handler.beforeInsertActionMetadata = new List<Trigger_Action__mdt>{
+			action
+		};
 
 		try {
 			handler.beforeInsert(handler.triggerNew);
@@ -193,7 +203,9 @@ private class MetadataTriggerHandlerTest {
 	@IsTest
 	private static void beforeUpdateShouldSucceed() {
 		action.Apex_Class_Name__c = TEST_BEFORE_UPDATE;
-		handler.beforeUpdateActionMetadata = new List<Trigger_Action__mdt>{ action };
+		handler.beforeUpdateActionMetadata = new List<Trigger_Action__mdt>{
+			action
+		};
 
 		handler.beforeUpdate(handler.triggerNew, handler.triggerOld);
 
@@ -203,7 +215,9 @@ private class MetadataTriggerHandlerTest {
 	@IsTest
 	private static void beforeUpdateShouldFailWithIncorrectType() {
 		action.Apex_Class_Name__c = TEST_BEFORE_INSERT;
-		handler.beforeUpdateActionMetadata = new List<Trigger_Action__mdt>{ action };
+		handler.beforeUpdateActionMetadata = new List<Trigger_Action__mdt>{
+			action
+		};
 
 		try {
 			handler.beforeUpdate(handler.triggerNew, handler.triggerOld);
@@ -229,7 +243,9 @@ private class MetadataTriggerHandlerTest {
 	@IsTest
 	private static void beforeUpdateShouldFailWithIncorrectClass() {
 		action.Apex_Class_Name__c = BOGUS_CLASS_NAME;
-		handler.beforeUpdateActionMetadata = new List<Trigger_Action__mdt>{ action };
+		handler.beforeUpdateActionMetadata = new List<Trigger_Action__mdt>{
+			action
+		};
 
 		try {
 			handler.beforeUpdate(handler.triggerNew, handler.triggerOld);
@@ -317,7 +333,9 @@ private class MetadataTriggerHandlerTest {
 	@IsTest
 	private static void beforeDeleteShouldSucceed() {
 		action.Apex_Class_Name__c = TEST_BEFORE_DELETE;
-		handler.beforeDeleteActionMetadata = new List<Trigger_Action__mdt>{ action };
+		handler.beforeDeleteActionMetadata = new List<Trigger_Action__mdt>{
+			action
+		};
 
 		handler.beforeDelete(handler.triggerOld);
 
@@ -327,7 +345,9 @@ private class MetadataTriggerHandlerTest {
 	@IsTest
 	private static void beforeDeleteShouldFailWithIncorrectType() {
 		action.Apex_Class_Name__c = TEST_BEFORE_INSERT;
-		handler.beforeDeleteActionMetadata = new List<Trigger_Action__mdt>{ action };
+		handler.beforeDeleteActionMetadata = new List<Trigger_Action__mdt>{
+			action
+		};
 
 		try {
 			handler.beforeDelete(handler.triggerOld);
@@ -353,7 +373,9 @@ private class MetadataTriggerHandlerTest {
 	@IsTest
 	private static void beforeDeleteShouldFailWithIncorrectClass() {
 		action.Apex_Class_Name__c = BOGUS_CLASS_NAME;
-		handler.beforeDeleteActionMetadata = new List<Trigger_Action__mdt>{ action };
+		handler.beforeDeleteActionMetadata = new List<Trigger_Action__mdt>{
+			action
+		};
 
 		try {
 			handler.beforeDelete(handler.triggerOld);
@@ -441,7 +463,9 @@ private class MetadataTriggerHandlerTest {
 	@IsTest
 	private static void afterUndeleteShouldSucceed() {
 		action.Apex_Class_Name__c = TEST_AFTER_UNDELETE;
-		handler.afterUndeleteActionMetadata = new List<Trigger_Action__mdt>{ action };
+		handler.afterUndeleteActionMetadata = new List<Trigger_Action__mdt>{
+			action
+		};
 
 		handler.afterUndelete(handler.triggerOld);
 
@@ -451,7 +475,9 @@ private class MetadataTriggerHandlerTest {
 	@IsTest
 	private static void afterUndeleteShouldFailWithIncorrectType() {
 		action.Apex_Class_Name__c = TEST_BEFORE_INSERT;
-		handler.afterUndeleteActionMetadata = new List<Trigger_Action__mdt>{ action };
+		handler.afterUndeleteActionMetadata = new List<Trigger_Action__mdt>{
+			action
+		};
 
 		try {
 			handler.afterUndelete(handler.triggerOld);
@@ -477,7 +503,9 @@ private class MetadataTriggerHandlerTest {
 	@IsTest
 	private static void afterUndeleteShouldFailWithIncorrectClass() {
 		action.Apex_Class_Name__c = BOGUS_CLASS_NAME;
-		handler.afterUndeleteActionMetadata = new List<Trigger_Action__mdt>{ action };
+		handler.afterUndeleteActionMetadata = new List<Trigger_Action__mdt>{
+			action
+		};
 
 		try {
 			handler.afterUndelete(handler.triggerOld);
@@ -502,7 +530,9 @@ private class MetadataTriggerHandlerTest {
 
 	@IsTest
 	private static void nothingToProcessShouldExitEarly() {
-		handler.beforeInsertActionMetadata = new List<Trigger_Action__mdt>{ action };
+		handler.beforeInsertActionMetadata = new List<Trigger_Action__mdt>{
+			action
+		};
 
 		handler.beforeInsert(new List<Account>());
 
@@ -603,7 +633,9 @@ private class MetadataTriggerHandlerTest {
 
 	@IsTest
 	private static void actionShouldExecuteIfNoRequiredOrBypassPermissionsAreDefinedForSObjectOrAction() {
-		MetadataTriggerHandler.selector = new FakeSelector(new List<SObject>{ action });
+		MetadataTriggerHandler.selector = new FakeSelector(
+			new List<SObject>{ action }
+		);
 
 		MetadataTriggerHandler.permissionMap.clear();
 
@@ -616,7 +648,9 @@ private class MetadataTriggerHandlerTest {
 	private static void actionShouldExecuteIfUserDoesNotHaveBypassPermissionForSObjectOrAction() {
 		setting.Bypass_Permission__c = BYPASS_PERMISSION;
 		action.Bypass_Permission__c = BYPASS_PERMISSION;
-		MetadataTriggerHandler.selector = new FakeSelector(new List<SObject>{ action });
+		MetadataTriggerHandler.selector = new FakeSelector(
+			new List<SObject>{ action }
+		);
 
 		MetadataTriggerHandler.permissionMap.clear();
 
@@ -628,8 +662,12 @@ private class MetadataTriggerHandlerTest {
 	@IsTest
 	private static void actionShouldNotExecuteIfUserDoesNotHaveRequiredPermissionForSObject() {
 		setting.Required_Permission__c = REQUIRED_PERMISSION;
-		MetadataTriggerHandler.selector = new FakeSelector(new List<SObject>{ action });
-		MetadataTriggerHandler.permissionMap = new Map<String, Boolean>{ REQUIRED_PERMISSION => false };
+		MetadataTriggerHandler.selector = new FakeSelector(
+			new List<SObject>{ action }
+		);
+		MetadataTriggerHandler.permissionMap = new Map<String, Boolean>{
+			REQUIRED_PERMISSION => false
+		};
 
 		handler.beforeInsert(handler.triggerNew);
 
@@ -639,8 +677,12 @@ private class MetadataTriggerHandlerTest {
 	@IsTest
 	private static void actionShouldNotExecuteIfUserDoesNotHaveRequiredPermissionForAction() {
 		action.Required_Permission__c = REQUIRED_PERMISSION;
-		MetadataTriggerHandler.selector = new FakeSelector(new List<SObject>{ action });
-		MetadataTriggerHandler.permissionMap = new Map<String, Boolean>{ REQUIRED_PERMISSION => false };
+		MetadataTriggerHandler.selector = new FakeSelector(
+			new List<SObject>{ action }
+		);
+		MetadataTriggerHandler.permissionMap = new Map<String, Boolean>{
+			REQUIRED_PERMISSION => false
+		};
 
 		handler.beforeInsert(handler.triggerNew);
 
@@ -650,8 +692,12 @@ private class MetadataTriggerHandlerTest {
 	@IsTest
 	private static void actionShouldNotExecuteIfUserHasBypassPermissionForSObject() {
 		setting.Bypass_Permission__c = BYPASS_PERMISSION;
-		MetadataTriggerHandler.selector = new FakeSelector(new List<SObject>{ action });
-		MetadataTriggerHandler.permissionMap = new Map<String, Boolean>{ BYPASS_PERMISSION => true };
+		MetadataTriggerHandler.selector = new FakeSelector(
+			new List<SObject>{ action }
+		);
+		MetadataTriggerHandler.permissionMap = new Map<String, Boolean>{
+			BYPASS_PERMISSION => true
+		};
 
 		handler.beforeInsert(handler.triggerNew);
 
@@ -661,8 +707,12 @@ private class MetadataTriggerHandlerTest {
 	@IsTest
 	private static void actionShouldNotExecuteIfUserHasBypassPermissionForAction() {
 		action.Bypass_Permission__c = BYPASS_PERMISSION;
-		MetadataTriggerHandler.selector = new FakeSelector(new List<SObject>{ action });
-		MetadataTriggerHandler.permissionMap = new Map<String, Boolean>{ BYPASS_PERMISSION => true };
+		MetadataTriggerHandler.selector = new FakeSelector(
+			new List<SObject>{ action }
+		);
+		MetadataTriggerHandler.permissionMap = new Map<String, Boolean>{
+			BYPASS_PERMISSION => true
+		};
 
 		handler.beforeInsert(handler.triggerNew);
 
@@ -685,7 +735,9 @@ private class MetadataTriggerHandlerTest {
 		action.Allow_Flow_Recursion__c = false;
 		MetadataTriggerHandler.bypass(TriggerActionFlow.class.getName());
 
-		handler.beforeInsertActionMetadata = new List<Trigger_Action__mdt>{ action };
+		handler.beforeInsertActionMetadata = new List<Trigger_Action__mdt>{
+			action
+		};
 
 		try {
 			handler.beforeInsert(handler.triggerNew);
@@ -707,12 +759,18 @@ private class MetadataTriggerHandlerTest {
 		}
 	}
 	public class TestBeforeUpdate implements TriggerAction.BeforeUpdate {
-		public void beforeUpdate(List<SObject> triggerNew, List<SObject> triggerOld) {
+		public void beforeUpdate(
+			List<SObject> triggerNew,
+			List<SObject> triggerOld
+		) {
 			MetadataTriggerHandlerTest.executed = true;
 		}
 	}
 	public class TestAfterUpdate implements TriggerAction.AfterUpdate {
-		public void afterUpdate(List<SObject> triggerNew, List<SObject> triggerOld) {
+		public void afterUpdate(
+			List<SObject> triggerNew,
+			List<SObject> triggerOld
+		) {
 			MetadataTriggerHandlerTest.executed = true;
 		}
 	}

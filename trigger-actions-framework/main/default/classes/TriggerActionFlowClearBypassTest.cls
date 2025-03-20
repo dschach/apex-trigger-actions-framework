@@ -31,7 +31,10 @@ private class TriggerActionFlowClearBypassTest {
 
 		TriggerActionFlowClearBypass.clearBypass(requests);
 
-		System.Assert.isFalse(TriggerBase.isBypassed(MY_STRING), 'The Object should not be bypassed');
+		System.Assert.isFalse(
+			TriggerBase.isBypassed(MY_STRING),
+			'The Object should not be bypassed'
+		);
 	}
 
 	@IsTest

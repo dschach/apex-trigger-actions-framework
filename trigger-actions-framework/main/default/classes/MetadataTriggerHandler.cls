@@ -235,7 +235,10 @@ public inherited sharing class MetadataTriggerHandler extends TriggerBase implem
 	 */
 	private void populatePermissionMap(String permissionName) {
 		if (permissionName != null && !permissionMap.containsKey(permissionName)) {
-			permissionMap.put(permissionName, FeatureManagement.checkPermission(permissionName));
+			permissionMap.put(
+				permissionName,
+				FeatureManagement.checkPermission(permissionName)
+			);
 		}
 	}
 
@@ -247,9 +250,15 @@ public inherited sharing class MetadataTriggerHandler extends TriggerBase implem
 	 */
 	private list<Trigger_Action__mdt> getActionMetadata(String relationshipName) {
 		if (!sObjectToContextToActions.containsKey(this.sObjectName)) {
-			sObjectToContextToActions.put(this.sObjectName, new Map<String, List<Trigger_Action__mdt>>());
+			sObjectToContextToActions.put(
+				this.sObjectName,
+				new Map<String, List<Trigger_Action__mdt>>()
+			);
 		}
-		if (!sObjectToContextToActions.get(this.sObjectName).containsKey(relationshipName)) {
+		if (
+			!sObjectToContextToActions.get(this.sObjectName)
+				.containsKey(relationshipName)
+		) {
 			list<Trigger_Action__mdt> result = new List<Trigger_Action__mdt>();
 			String sObjectLocalName = this.sObjectName;
 			List<String> split = sObjectName.split(DOUBLE_UNDERSCORE);
@@ -270,16 +279,20 @@ public inherited sharing class MetadataTriggerHandler extends TriggerBase implem
 				}
 			);
 			for (
-				Trigger_Action__mdt actionMetadata : (List<Trigger_Action__mdt>) selector.query(queryString)
+				Trigger_Action__mdt actionMetadata : (List<Trigger_Action__mdt>) selector.query(
+					queryString
+				)
 			) {
 				if (shouldExecute(actionMetadata, relationshipName)) {
 					result.add(actionMetadata);
 				}
 			}
 
-			sObjectToContextToActions.get(this.sObjectName).put(relationshipName, result);
+			sObjectToContextToActions.get(this.sObjectName)
+				.put(relationshipName, result);
 		}
-		return sObjectToContextToActions.get(this.sObjectName).get(relationshipName);
+		return sObjectToContextToActions.get(this.sObjectName)
+			.get(relationshipName);
 	}
 
 	/**
@@ -289,7 +302,10 @@ public inherited sharing class MetadataTriggerHandler extends TriggerBase implem
 	 * @param relationshipName The name of the relationship.
 	 * @return True if the Trigger Action should be executed, false otherwise.
 	 */
-	private Boolean shouldExecute(Trigger_Action__mdt actionMetadata, String relationshipName) {
+	private Boolean shouldExecute(
+		Trigger_Action__mdt actionMetadata,
+		String relationshipName
+	) {
 		String sObjectBypassPermissionName = (String) ((sObject_Trigger_Setting__mdt) actionMetadata.getSobject(
 				relationshipName + RELATIONSHIP_SUFFIX
 			))
@@ -312,7 +328,8 @@ public inherited sharing class MetadataTriggerHandler extends TriggerBase implem
 		return !isBypassed(
 				actionMetadata.Bypass_Permission__c,
 				actionMetadata.Required_Permission__c
-			) && !isBypassed(sObjectBypassPermissionName, sObjectRequiredPermissionName);
+			) &&
+			!isBypassed(sObjectBypassPermissionName, sObjectRequiredPermissionName);
 	}
 
 	/**
@@ -322,7 +339,10 @@ public inherited sharing class MetadataTriggerHandler extends TriggerBase implem
 	 * @param requiredPermission The required permission for the Trigger Action.
 	 * @return True if bypassed, false otherwise.
 	 */
-	private static boolean isBypassed(String bypassPermission, String requiredPermission) {
+	private static boolean isBypassed(
+		String bypassPermission,
+		String requiredPermission
+	) {
 		return (bypassPermission != null && permissionMap.get(bypassPermission)) ||
 			(requiredPermission != null && !permissionMap.get(requiredPermission));
 	}
@@ -344,8 +364,16 @@ public inherited sharing class MetadataTriggerHandler extends TriggerBase implem
 			if (!canExecute(triggerMetadata)) {
 				continue;
 			}
-			this.validateType(context, triggerAction, triggerMetadata.Apex_Class_Name__c);
-			FormulaFilter.Result filtered = new FormulaFilter(triggerMetadata, context, this.sObjectName)
+			this.validateType(
+				context,
+				triggerAction,
+				triggerMetadata.Apex_Class_Name__c
+			);
+			FormulaFilter.Result filtered = new FormulaFilter(
+					triggerMetadata,
+					context,
+					this.sObjectName
+				)
 				.filterByEntryCriteria(triggerNew, triggerOld);
 
 			if (
@@ -359,10 +387,12 @@ public inherited sharing class MetadataTriggerHandler extends TriggerBase implem
 
 			switch on context {
 				when BEFORE_INSERT {
-					((TriggerAction.BeforeInsert) triggerAction).beforeInsert(filtered.triggerNew);
+					((TriggerAction.BeforeInsert) triggerAction)
+						.beforeInsert(filtered.triggerNew);
 				}
 				when AFTER_INSERT {
-					((TriggerAction.AfterInsert) triggerAction).afterInsert(filtered.triggerNew);
+					((TriggerAction.AfterInsert) triggerAction)
+						.afterInsert(filtered.triggerNew);
 				}
 				when BEFORE_UPDATE {
 					((TriggerAction.BeforeUpdate) triggerAction)
@@ -373,13 +403,16 @@ public inherited sharing class MetadataTriggerHandler extends TriggerBase implem
 						.afterUpdate(filtered.triggerNew, filtered.triggerOld);
 				}
 				when BEFORE_DELETE {
-					((TriggerAction.BeforeDelete) triggerAction).beforeDelete(filtered.triggerOld);
+					((TriggerAction.BeforeDelete) triggerAction)
+						.beforeDelete(filtered.triggerOld);
 				}
 				when AFTER_DELETE {
-					((TriggerAction.AfterDelete) triggerAction).afterDelete(filtered.triggerOld);
+					((TriggerAction.AfterDelete) triggerAction)
+						.afterDelete(filtered.triggerOld);
 				}
 				when AFTER_UNDELETE {
-					((TriggerAction.AfterUndelete) triggerAction).afterUndelete(filtered.triggerNew);
+					((TriggerAction.AfterUndelete) triggerAction)
+						.afterUndelete(filtered.triggerNew);
 				}
 			}
 		}
@@ -392,7 +425,9 @@ public inherited sharing class MetadataTriggerHandler extends TriggerBase implem
 	 * @param context The TriggerOperation context for which to retrieve metadata.
 	 * @return A List of Trigger_Action__mdt metadata records corresponding to the given context.
 	 */
-	private List<Trigger_Action__mdt> getActionMetadata(TriggerOperation context) {
+	private List<Trigger_Action__mdt> getActionMetadata(
+		TriggerOperation context
+	) {
 		List<Trigger_Action__mdt> result;
 		switch on context {
 			when BEFORE_INSERT {
@@ -439,10 +474,15 @@ public inherited sharing class MetadataTriggerHandler extends TriggerBase implem
 			result = Type.forName(triggerMetadata.Apex_Class_Name__c).newInstance();
 			if (triggerMetadata.Flow_Name__c != null) {
 				((TriggerActionFlow) result).flowName = triggerMetadata.Flow_Name__c;
-				((TriggerActionFlow) result).allowRecursion = triggerMetadata.Allow_Flow_Recursion__c;
+				((TriggerActionFlow) result)
+					.allowRecursion = triggerMetadata.Allow_Flow_Recursion__c;
 			}
 		} catch (System.NullPointerException e) {
-			handleException(INVALID_CLASS_ERROR, triggerMetadata.Apex_Class_Name__c, context);
+			handleException(
+				INVALID_CLASS_ERROR,
+				triggerMetadata.Apex_Class_Name__c,
+				context
+			);
 		}
 		return result;
 	}
@@ -456,8 +496,9 @@ public inherited sharing class MetadataTriggerHandler extends TriggerBase implem
 	 * @return True if the trigger action can be executed, false otherwise.
 	 */
 	private Boolean canExecute(Trigger_Action__mdt triggerMetadata) {
-		return !MetadataTriggerHandler.isBypassed(triggerMetadata.Apex_Class_Name__c) &&
-			!TriggerBase.isBypassed(this.sObjectName);
+		return !MetadataTriggerHandler.isBypassed(
+				triggerMetadata.Apex_Class_Name__c
+			) && !TriggerBase.isBypassed(this.sObjectName);
 	}
 
 	/**
@@ -467,7 +508,11 @@ public inherited sharing class MetadataTriggerHandler extends TriggerBase implem
 	 * @param triggerAction The Trigger Action object.
 	 * @param className The name of the Trigger Action class.
 	 */
-	private void validateType(TriggerOperation context, Object triggerAction, String className) {
+	private void validateType(
+		TriggerOperation context,
+		Object triggerAction,
+		String className
+	) {
 		try {
 			switch on context {
 				when BEFORE_INSERT {
@@ -504,11 +549,19 @@ public inherited sharing class MetadataTriggerHandler extends TriggerBase implem
 	 * @param className The name of the Trigger Action class.
 	 * @param triggerOperation The Trigger Operation context.
 	 */
-	private void handleException(String error, String className, TriggerOperation triggerOperation) {
+	private void handleException(
+		String error,
+		String className,
+		TriggerOperation triggerOperation
+	) {
 		throw new MetadataTriggerHandlerException(
 			String.format(
 				error,
-				new List<String>{ className, String.valueOf(triggerOperation), this.sObjectName }
+				new List<String>{
+					className,
+					String.valueOf(triggerOperation),
+					this.sObjectName
+				}
 			)
 		);
 	}
@@ -522,7 +575,9 @@ public inherited sharing class MetadataTriggerHandler extends TriggerBase implem
 	private List<Trigger_Action__mdt> beforeInsertActionMetadata {
 		get {
 			if (beforeInsertActionMetadata == null) {
-				beforeInsertActionMetadata = getActionMetadata(TriggerOperation.BEFORE_INSERT.name());
+				beforeInsertActionMetadata = getActionMetadata(
+					TriggerOperation.BEFORE_INSERT.name()
+				);
 			}
 			return beforeInsertActionMetadata;
 		}
@@ -538,7 +593,9 @@ public inherited sharing class MetadataTriggerHandler extends TriggerBase implem
 	private List<Trigger_Action__mdt> afterInsertActionMetadata {
 		get {
 			if (afterInsertActionMetadata == null) {
-				afterInsertActionMetadata = getActionMetadata(TriggerOperation.AFTER_INSERT.name());
+				afterInsertActionMetadata = getActionMetadata(
+					TriggerOperation.AFTER_INSERT.name()
+				);
 			}
 			return afterInsertActionMetadata;
 		}
@@ -554,7 +611,9 @@ public inherited sharing class MetadataTriggerHandler extends TriggerBase implem
 	private List<Trigger_Action__mdt> beforeUpdateActionMetadata {
 		get {
 			if (beforeUpdateActionMetadata == null) {
-				beforeUpdateActionMetadata = getActionMetadata(TriggerOperation.BEFORE_UPDATE.name());
+				beforeUpdateActionMetadata = getActionMetadata(
+					TriggerOperation.BEFORE_UPDATE.name()
+				);
 			}
 			return beforeUpdateActionMetadata;
 		}
@@ -570,7 +629,9 @@ public inherited sharing class MetadataTriggerHandler extends TriggerBase implem
 	private List<Trigger_Action__mdt> afterUpdateActionMetadata {
 		get {
 			if (afterUpdateActionMetadata == null) {
-				afterUpdateActionMetadata = getActionMetadata(TriggerOperation.AFTER_UPDATE.name());
+				afterUpdateActionMetadata = getActionMetadata(
+					TriggerOperation.AFTER_UPDATE.name()
+				);
 			}
 			return afterUpdateActionMetadata;
 		}
@@ -586,7 +647,9 @@ public inherited sharing class MetadataTriggerHandler extends TriggerBase implem
 	private List<Trigger_Action__mdt> beforeDeleteActionMetadata {
 		get {
 			if (beforeDeleteActionMetadata == null) {
-				beforeDeleteActionMetadata = getActionMetadata(TriggerOperation.BEFORE_DELETE.name());
+				beforeDeleteActionMetadata = getActionMetadata(
+					TriggerOperation.BEFORE_DELETE.name()
+				);
 			}
 			return beforeDeleteActionMetadata;
 		}
@@ -602,7 +665,9 @@ public inherited sharing class MetadataTriggerHandler extends TriggerBase implem
 	private List<Trigger_Action__mdt> afterDeleteActionMetadata {
 		get {
 			if (afterDeleteActionMetadata == null) {
-				afterDeleteActionMetadata = getActionMetadata(TriggerOperation.AFTER_DELETE.name());
+				afterDeleteActionMetadata = getActionMetadata(
+					TriggerOperation.AFTER_DELETE.name()
+				);
 			}
 			return afterDeleteActionMetadata;
 		}
@@ -618,7 +683,9 @@ public inherited sharing class MetadataTriggerHandler extends TriggerBase implem
 	private List<Trigger_Action__mdt> afterUndeleteActionMetadata {
 		get {
 			if (afterUndeleteActionMetadata == null) {
-				afterUndeleteActionMetadata = getActionMetadata(TriggerOperation.AFTER_UNDELETE.name());
+				afterUndeleteActionMetadata = getActionMetadata(
+					TriggerOperation.AFTER_UNDELETE.name()
+				);
 			}
 			return afterUndeleteActionMetadata;
 		}

@@ -27,7 +27,10 @@ private class TriggerActionFlowClearAllBypassesTest {
 			new List<String>{ TriggerActionConstants.OBJECT_STRING }
 		);
 
-		System.Assert.isFalse(TriggerBase.isBypassed(MY_STRING), 'The Object should not be bypassed');
+		System.Assert.isFalse(
+			TriggerBase.isBypassed(MY_STRING),
+			'The Object should not be bypassed'
+		);
 	}
 
 	@IsTest
@@ -63,7 +66,9 @@ private class TriggerActionFlowClearAllBypassesTest {
 		Exception myException;
 
 		try {
-			TriggerActionFlowClearAllBypasses.clearAllBypasses(new List<String>{ MY_STRING });
+			TriggerActionFlowClearAllBypasses.clearAllBypasses(
+				new List<String>{ MY_STRING }
+			);
 		} catch (Exception e) {
 			myException = e;
 		}

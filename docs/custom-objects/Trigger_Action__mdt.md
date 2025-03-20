@@ -1,11 +1,9 @@
 # Trigger Action
 
 ## API Name
-
 `Trigger_Action__mdt`
 
 ## Fields
-
 ### After Delete
 
 Enter the name of the sObject you want to have this action execute on during the after delete context
@@ -16,10 +14,9 @@ Enter the name of the sObject you want to have this action execute on during the
 
 **Type**
 
-_MetadataRelationship_
+*MetadataRelationship*
 
 ---
-
 ### After Insert
 
 Enter the name of the sObject you want to have this action execute on during the after insert context
@@ -30,10 +27,9 @@ Enter the name of the sObject you want to have this action execute on during the
 
 **Type**
 
-_MetadataRelationship_
+*MetadataRelationship*
 
 ---
-
 ### After Undelete
 
 Enter the name of the sObject you want to have this action execute on during the after undelete context
@@ -44,10 +40,9 @@ Enter the name of the sObject you want to have this action execute on during the
 
 **Type**
 
-_MetadataRelationship_
+*MetadataRelationship*
 
 ---
-
 ### After Update
 
 Enter the name of the sObject you want to have this action execute on during the after update context
@@ -58,10 +53,9 @@ Enter the name of the sObject you want to have this action execute on during the
 
 **Type**
 
-_MetadataRelationship_
+*MetadataRelationship*
 
 ---
-
 ### Allow Flow Recursion?
 
 Check this box to allow the flow to execute recursively
@@ -72,12 +66,10 @@ Check this box to allow the flow to execute recursively
 
 **Type**
 
-_Checkbox_
+*Checkbox*
 
 ---
-
 ### Apex Class Name
-
 **Required**
 
 Enter the name of the Apex Class which defines the action to be taken
@@ -88,10 +80,9 @@ Enter the name of the Apex Class which defines the action to be taken
 
 **Type**
 
-_Text_
+*Text*
 
 ---
-
 ### Before Delete
 
 Enter the name of the sObject you want to have this action execute on during the before delete context
@@ -102,10 +93,9 @@ Enter the name of the sObject you want to have this action execute on during the
 
 **Type**
 
-_MetadataRelationship_
+*MetadataRelationship*
 
 ---
-
 ### Before Insert
 
 Enter the name of the sObject you want to have this action execute on during the before insert context
@@ -116,10 +106,9 @@ Enter the name of the sObject you want to have this action execute on during the
 
 **Type**
 
-_MetadataRelationship_
+*MetadataRelationship*
 
 ---
-
 ### Before Update
 
 Enter the name of the sObject you want to have this action execute on during the before update context
@@ -130,10 +119,9 @@ Enter the name of the sObject you want to have this action execute on during the
 
 **Type**
 
-_MetadataRelationship_
+*MetadataRelationship*
 
 ---
-
 ### Bypass Execution
 
 Set this to true to bypass this Trigger Action from being called
@@ -144,10 +132,9 @@ Set this to true to bypass this Trigger Action from being called
 
 **Type**
 
-_Checkbox_
+*Checkbox*
 
 ---
-
 ### Bypass Permission
 
 Optional. Enter the API name of a permission. If this field has a value, then the triggers on this object will be bypassed if the running user has the custom permission identified.
@@ -158,10 +145,9 @@ Optional. Enter the API name of a permission. If this field has a value, then th
 
 **Type**
 
-_Text_
+*Text*
 
 ---
-
 ### Description
 
 **API Name**
@@ -170,10 +156,9 @@ _Text_
 
 **Type**
 
-_LongTextArea_
+*LongTextArea*
 
 ---
-
 ### Entry Criteria
 
 Formula which if evaluated to true for a given record during trigger processing, then this trigger action will be processed for that record.
@@ -184,10 +169,9 @@ Formula which if evaluated to true for a given record during trigger processing,
 
 **Type**
 
-_LongTextArea_
+*LongTextArea*
 
 ---
-
 ### Flow Name
 
 Enter the API name of the flow you would like to execute.
@@ -198,12 +182,10 @@ Enter the API name of the flow you would like to execute.
 
 **Type**
 
-_Text_
+*Text*
 
 ---
-
 ### Order
-
 **Required**
 
 **API Name**
@@ -212,13 +194,12 @@ _Text_
 
 **Type**
 
-_Number_
+*Number*
 
 ---
-
 ### Required Permission
 
-Optional. Enter the API name of a permission. If this field has a value, then the triggers on this object will only execute if the running user has the custom permission identified.
+Optional. Enter the API name of a permission. If this field has a value, then the triggers on this object will  only execute if the running user has the custom permission identified.
 
 **API Name**
 
@@ -226,4 +207,4 @@ Optional. Enter the API name of a permission. If this field has a value, then th
 
 **Type**
 
-_Text_
+*Text*

@@ -13,7 +13,9 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-@SuppressWarnings('PMD.ApexUnitTestClassShouldHaveRunAs, PMD.AvoidGlobalModifier')
+@SuppressWarnings(
+	'PMD.ApexUnitTestClassShouldHaveRunAs, PMD.AvoidGlobalModifier'
+)
 @IsTest
 global class FormulaFilterTest {
 	private static final String ACCOUNT_SOBJECT_NAME = 'Account';
@@ -43,10 +45,21 @@ global class FormulaFilterTest {
 			ACCOUNT_SOBJECT_NAME
 		);
 
-		FormulaFilter.Result result = filter.filterByEntryCriteria(triggerNew, triggerOld);
+		FormulaFilter.Result result = filter.filterByEntryCriteria(
+			triggerNew,
+			triggerOld
+		);
 
-		System.Assert.areEqual(2, result.triggerNew.size(), 'The size of triggerNew should be 2');
-		System.Assert.areEqual(2, result.triggerOld.size(), 'The size of triggerOld should be 2');
+		System.Assert.areEqual(
+			2,
+			result.triggerNew.size(),
+			'The size of triggerNew should be 2'
+		);
+		System.Assert.areEqual(
+			2,
+			result.triggerOld.size(),
+			'The size of triggerOld should be 2'
+		);
 	}
 
 	@IsTest
@@ -59,10 +72,21 @@ global class FormulaFilterTest {
 			ACCOUNT_SOBJECT_NAME
 		);
 
-		FormulaFilter.Result result = filter.filterByEntryCriteria(triggerNew, triggerOld);
+		FormulaFilter.Result result = filter.filterByEntryCriteria(
+			triggerNew,
+			triggerOld
+		);
 
-		System.Assert.areEqual(2, result.triggerNew.size(), 'The size of triggerNew should be 2');
-		System.Assert.areEqual(2, result.triggerOld.size(), 'The size of triggerNew should be 2');
+		System.Assert.areEqual(
+			2,
+			result.triggerNew.size(),
+			'The size of triggerNew should be 2'
+		);
+		System.Assert.areEqual(
+			2,
+			result.triggerOld.size(),
+			'The size of triggerNew should be 2'
+		);
 	}
 
 	@IsTest
@@ -74,15 +98,26 @@ global class FormulaFilterTest {
 			ACCOUNT_SOBJECT_NAME
 		);
 
-		FormulaFilter.Result result = filter.filterByEntryCriteria(triggerNew, triggerOld);
+		FormulaFilter.Result result = filter.filterByEntryCriteria(
+			triggerNew,
+			triggerOld
+		);
 
-		System.Assert.areEqual(1, result.triggerNew.size(), 'There should be 1 record in triggerNew');
+		System.Assert.areEqual(
+			1,
+			result.triggerNew.size(),
+			'There should be 1 record in triggerNew'
+		);
 		System.Assert.areEqual(
 			'Test Account 1',
 			((Account) result.triggerNew[0]).Name,
 			'The first record triggerNew should have a name of Test Account 1'
 		);
-		System.Assert.areEqual(1, result.triggerOld.size(), 'There should be 1 record in triggerNew');
+		System.Assert.areEqual(
+			1,
+			result.triggerOld.size(),
+			'There should be 1 record in triggerNew'
+		);
 		System.Assert.areEqual(
 			'Test Account 1',
 			((Account) result.triggerOld[0]).Name,
@@ -99,11 +134,20 @@ global class FormulaFilterTest {
 			ACCOUNT_SOBJECT_NAME
 		);
 
-		FormulaFilter.Result result = filter.filterByEntryCriteria(triggerNew, triggerOld);
+		FormulaFilter.Result result = filter.filterByEntryCriteria(
+			triggerNew,
+			triggerOld
+		);
 
 		System.Assert.isNotNull(result, 'result should not be null');
-		System.Assert.isTrue(result.triggerNew.isEmpty(), 'triggerNew should be empty');
-		System.Assert.isTrue(result.triggerOld.isEmpty(), 'triggerOld should be empty');
+		System.Assert.isTrue(
+			result.triggerNew.isEmpty(),
+			'triggerNew should be empty'
+		);
+		System.Assert.isTrue(
+			result.triggerOld.isEmpty(),
+			'triggerOld should be empty'
+		);
 	}
 
 	@IsTest
@@ -124,7 +168,10 @@ global class FormulaFilterTest {
 
 		System.Assert.isNotNull(caught, EXCEPTION_SHOULD_BE_THROWN);
 		System.Assert.areEqual(
-			String.format(FormulaFilter.MISSING_CLASS_NAME, new List<String>{ ACCOUNT_SOBJECT_NAME }),
+			String.format(
+				FormulaFilter.MISSING_CLASS_NAME,
+				new List<String>{ ACCOUNT_SOBJECT_NAME }
+			),
 			caught.getMessage(),
 			'The exception message should match the expected error'
 		);
@@ -148,7 +195,10 @@ global class FormulaFilterTest {
 
 		System.Assert.isNotNull(caught, EXCEPTION_SHOULD_BE_THROWN);
 		System.Assert.areEqual(
-			String.format(FormulaFilter.MISSING_CLASS_NAME, new List<String>{ ACCOUNT_SOBJECT_NAME }),
+			String.format(
+				FormulaFilter.MISSING_CLASS_NAME,
+				new List<String>{ ACCOUNT_SOBJECT_NAME }
+			),
 			caught.getMessage(),
 			'The exception message should match the expected error'
 		);
@@ -206,7 +256,10 @@ global class FormulaFilterTest {
 		System.Assert.areEqual(
 			String.format(
 				FormulaFilter.INVALID_SUBTYPE,
-				new List<String>{ ACCOUNT_SOBJECT_NAME, sobjectSetting.TriggerRecord_Class_Name__c }
+				new List<String>{
+					ACCOUNT_SOBJECT_NAME,
+					sobjectSetting.TriggerRecord_Class_Name__c
+				}
 			),
 			caught.getMessage(),
 			'The exception message should match the expected error'
@@ -232,7 +285,10 @@ global class FormulaFilterTest {
 		System.Assert.areEqual(
 			String.format(
 				FormulaFilter.INVALID_CLASS,
-				new List<String>{ ACCOUNT_SOBJECT_NAME, sobjectSetting.TriggerRecord_Class_Name__c }
+				new List<String>{
+					ACCOUNT_SOBJECT_NAME,
+					sobjectSetting.TriggerRecord_Class_Name__c
+				}
 			),
 			caught.getMessage(),
 			'The exception message should match the expected error'

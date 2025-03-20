@@ -104,7 +104,9 @@ public virtual inherited sharing class TriggerActionFlow implements TriggerActio
 			return;
 		}
 		handleInvocableResults(
-			invokeAction(getInterviewInputs(triggerNew, TriggerActionConstants.RECORD_VARIABLE)),
+			invokeAction(
+				getInterviewInputs(triggerNew, TriggerActionConstants.RECORD_VARIABLE)
+			),
 			triggerNew
 		);
 	}
@@ -156,7 +158,8 @@ public virtual inherited sharing class TriggerActionFlow implements TriggerActio
 		for (Integer i = 0; i < triggerNew.size(); i++) {
 			sObject record = triggerNew[i];
 			if (
-				TriggerBase.idToNumberOfTimesSeenAfterUpdate.get(record.id) == 1 || (allowRecursion == true)
+				TriggerBase.idToNumberOfTimesSeenAfterUpdate.get(record.id) == 1 ||
+				(allowRecursion == true)
 			) {
 				recordsNotYetProcessed.add(record);
 				oldRecordsNotYetProcessed.add(triggerOld[i]);
@@ -166,7 +169,9 @@ public virtual inherited sharing class TriggerActionFlow implements TriggerActio
 			return;
 		}
 		handleInvocableResults(
-			invokeAction(getInterviewInputs(recordsNotYetProcessed, oldRecordsNotYetProcessed)),
+			invokeAction(
+				getInterviewInputs(recordsNotYetProcessed, oldRecordsNotYetProcessed)
+			),
 			recordsNotYetProcessed
 		);
 	}
@@ -181,7 +186,12 @@ public virtual inherited sharing class TriggerActionFlow implements TriggerActio
 			return;
 		}
 		handleInvocableResults(
-			invokeAction(getInterviewInputs(triggerOld, TriggerActionConstants.RECORD_PRIOR_VARIABLE)),
+			invokeAction(
+				getInterviewInputs(
+					triggerOld,
+					TriggerActionConstants.RECORD_PRIOR_VARIABLE
+				)
+			),
 			triggerOld
 		);
 	}
@@ -196,7 +206,12 @@ public virtual inherited sharing class TriggerActionFlow implements TriggerActio
 			return;
 		}
 		handleInvocableResults(
-			invokeAction(getInterviewInputs(triggerOld, TriggerActionConstants.RECORD_PRIOR_VARIABLE)),
+			invokeAction(
+				getInterviewInputs(
+					triggerOld,
+					TriggerActionConstants.RECORD_PRIOR_VARIABLE
+				)
+			),
 			triggerOld
 		);
 	}
@@ -211,27 +226,40 @@ public virtual inherited sharing class TriggerActionFlow implements TriggerActio
 			return;
 		}
 		handleInvocableResults(
-			invokeAction(getInterviewInputs(triggerNew, TriggerActionConstants.RECORD_VARIABLE)),
+			invokeAction(
+				getInterviewInputs(triggerNew, TriggerActionConstants.RECORD_VARIABLE)
+			),
 			triggerNew
 		);
 	}
 
 	private Boolean flowIsBypassed() {
 		if (String.isBlank(flowName)) {
-			throw new IllegalArgumentException(TriggerActionConstants.INVALID_FLOW_NAME);
+			throw new IllegalArgumentException(
+				TriggerActionConstants.INVALID_FLOW_NAME
+			);
 		}
 		return TriggerActionFlow.isBypassed(flowName);
 	}
 
-	private List<Invocable.Action.Result> invokeAction(List<Map<String, Object>> inputs) {
+	private List<Invocable.Action.Result> invokeAction(
+		List<Map<String, Object>> inputs
+	) {
 		return invocableAction.invokeAction(this.flowName, inputs);
 	}
 
-	private void applyFlowValues(sObject stateBeforeFlow, sObject stateAfterFlow) {
+	private void applyFlowValues(
+		sObject stateBeforeFlow,
+		sObject stateAfterFlow
+	) {
 		Boolean hasBeenMutated = false;
 		Set<String> recordPopulatedFields = new Set<String>();
-		recordPopulatedFields.addAll(stateAfterFlow.getPopulatedFieldsAsMap().keySet());
-		recordPopulatedFields.addAll(stateBeforeFlow.getPopulatedFieldsAsMap().keySet());
+		recordPopulatedFields.addAll(
+			stateAfterFlow.getPopulatedFieldsAsMap().keySet()
+		);
+		recordPopulatedFields.addAll(
+			stateBeforeFlow.getPopulatedFieldsAsMap().keySet()
+		);
 		for (String fieldName : recordPopulatedFields) {
 			if (stateBeforeFlow.get(fieldName) != stateAfterFlow.get(fieldName)) {
 				stateBeforeFlow.put(fieldName, stateAfterFlow.get(fieldName));

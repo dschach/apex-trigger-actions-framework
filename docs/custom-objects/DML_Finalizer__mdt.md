@@ -1,13 +1,10 @@
 # DML Finalizer
 
 ## API Name
-
 `DML_Finalizer__mdt`
 
 ## Fields
-
 ### Apex Class Name
-
 **Required**
 
 Enter the name of the Apex Class which defines the action to be taken
@@ -18,10 +15,9 @@ Enter the name of the Apex Class which defines the action to be taken
 
 **Type**
 
-_Text_
+*Text*
 
 ---
-
 ### Bypass Execution
 
 Set this to true to bypass this Trigger Action from being called
@@ -32,10 +28,9 @@ Set this to true to bypass this Trigger Action from being called
 
 **Type**
 
-_Checkbox_
+*Checkbox*
 
 ---
-
 ### Bypass Permission
 
 Optional. Enter the API name of a permission. If this field has a value, then the triggers on this object will be bypassed if the running user has the custom permission identified.
@@ -46,12 +41,10 @@ Optional. Enter the API name of a permission. If this field has a value, then th
 
 **Type**
 
-_Text_
+*Text*
 
 ---
-
 ### Order
-
 **Required**
 
 **API Name**
@@ -60,13 +53,12 @@ _Text_
 
 **Type**
 
-_Number_
+*Number*
 
 ---
-
 ### Required Permission
 
-Optional. Enter the API name of a permission. If this field has a value, then the triggers on this object will only execute if the running user has the custom permission identified.
+Optional. Enter the API name of a permission. If this field has a value, then the triggers on this object will  only execute if the running user has the custom permission identified.
 
 **API Name**
 
@@ -74,4 +66,4 @@ Optional. Enter the API name of a permission. If this field has a value, then th
 
 **Type**
 
-_Text_
+*Text*

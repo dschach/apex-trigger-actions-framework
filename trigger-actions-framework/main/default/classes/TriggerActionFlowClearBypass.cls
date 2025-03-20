@@ -27,7 +27,7 @@
  *
  * The `clearBypass` method will clear the bypass for the specified objects, Apex actions, or Flow actions.
  */
-@SuppressWarnings('PMD.CognitiveComplexity')
+@SuppressWarnings('PMD.ApexDoc, PMD.CognitiveComplexity')
 public inherited sharing class TriggerActionFlowClearBypass {
 	/**
 	 * @description This method clears the bypass for the specified objects, Apex actions, or Flow actions.
@@ -62,7 +62,11 @@ public inherited sharing class TriggerActionFlowClearBypass {
 			required=true
 		)
 		public String name;
-		@InvocableVariable(label='Bypass Type' description='Apex, Flow, or Object' required=true)
+		@InvocableVariable(
+			label='Bypass Type'
+			description='Apex, Flow, or Object'
+			required=true
+		)
 		public String bypassType;
 	}
 

@@ -1,6 +1,6 @@
 # FlowChangeEventHeader Class
 
-A flow-accessible version of the ChangeEventHeader class for use in
+A flow-accessible version of the ChangeEventHeader class for use in 
 a flow handler of a change data capture event.
 
 **Group** Trigger Actions Framework
@@ -8,20 +8,17 @@ a flow handler of a change data capture event.
 **See** https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_event_fields_header.htm
 
 ## Fields
-
 ### `entityName`
 
 `INVOCABLEVARIABLE`
 `AURAENABLED`
 
 #### Signature
-
 ```apex
 public entityName
 ```
 
 #### Type
-
 String
 
 ---
@@ -32,13 +29,11 @@ String
 `AURAENABLED`
 
 #### Signature
-
 ```apex
 public recordIds
 ```
 
 #### Type
-
 List&lt;String&gt;
 
 ---
@@ -49,13 +44,11 @@ List&lt;String&gt;
 `AURAENABLED`
 
 #### Signature
-
 ```apex
 public changeType
 ```
 
 #### Type
-
 String
 
 ---
@@ -66,13 +59,11 @@ String
 `AURAENABLED`
 
 #### Signature
-
 ```apex
 public changeOrigin
 ```
 
 #### Type
-
 String
 
 ---
@@ -83,13 +74,11 @@ String
 `AURAENABLED`
 
 #### Signature
-
 ```apex
 public transactionKey
 ```
 
 #### Type
-
 String
 
 ---
@@ -100,13 +89,11 @@ String
 `AURAENABLED`
 
 #### Signature
-
 ```apex
 public sequenceNumber
 ```
 
 #### Type
-
 Integer
 
 ---
@@ -117,13 +104,11 @@ Integer
 `AURAENABLED`
 
 #### Signature
-
 ```apex
 public commitTimestamp
 ```
 
 #### Type
-
 Long
 
 ---
@@ -134,13 +119,11 @@ Long
 `AURAENABLED`
 
 #### Signature
-
 ```apex
 public commitUser
 ```
 
 #### Type
-
 String
 
 ---
@@ -151,13 +134,11 @@ String
 `AURAENABLED`
 
 #### Signature
-
 ```apex
 public commitNumber
 ```
 
 #### Type
-
 Long
 
 ---
@@ -168,13 +149,11 @@ Long
 `AURAENABLED`
 
 #### Signature
-
 ```apex
 public nulledFields
 ```
 
 #### Type
-
 List&lt;String&gt;
 
 ---
@@ -185,13 +164,11 @@ List&lt;String&gt;
 `AURAENABLED`
 
 #### Signature
-
 ```apex
 public diffFields
 ```
 
 #### Type
-
 List&lt;String&gt;
 
 ---
@@ -202,54 +179,45 @@ List&lt;String&gt;
 `AURAENABLED`
 
 #### Signature
-
 ```apex
 public changedFields
 ```
 
 #### Type
-
 List&lt;String&gt;
 
 ## Constructors
-
 ### `FlowChangeEventHeader(header)`
 
-Constructor that takes an `EventBus.ChangeEventHeader` object and populates
+Constructor that takes an `EventBus.ChangeEventHeader` object and populates 
 the properties of this object with the values from the `EventBus.ChangeEventHeader` object.
 
 #### Signature
-
 ```apex
 public FlowChangeEventHeader(EventBus.ChangeEventHeader header)
 ```
 
 #### Parameters
-
-| Name   | Type                       | Description                                                                  |
-| ------ | -------------------------- | ---------------------------------------------------------------------------- |
+| Name | Type | Description |
+|------|------|-------------|
 | header | EventBus.ChangeEventHeader | The ,[object Object], object to populate the properties of this object with. |
 
 ## Methods
-
 ### `equals(obj)`
 
 Compares this `FlowChangeEventHeader` object to another object.
 
 #### Signature
-
 ```apex
 public Boolean equals(Object obj)
 ```
 
 #### Parameters
-
-| Name | Type   | Description                                                   |
-| ---- | ------ | ------------------------------------------------------------- |
-| obj  | Object | The object to compare this `FlowChangeEventHeader` object to. |
+| Name | Type | Description |
+|------|------|-------------|
+| obj | Object | The object to compare this `FlowChangeEventHeader` object to. |
 
 #### Return Type
-
 **Boolean**
 
 ,[object Object], if the objects are equal, ,[object Object], otherwise.
@@ -261,13 +229,11 @@ public Boolean equals(Object obj)
 Returns a hash code value for this `FlowChangeEventHeader` object.
 
 #### Signature
-
 ```apex
 public Integer hashCode()
 ```
 
 #### Return Type
-
 **Integer**
 
 A hash code value for this ,[object Object], object.
