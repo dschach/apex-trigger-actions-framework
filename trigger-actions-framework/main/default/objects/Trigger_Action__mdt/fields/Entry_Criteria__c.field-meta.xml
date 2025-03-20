@@ -3,7 +3,7 @@
     <fullName>Entry_Criteria__c</fullName>
     <description>Formula which if evaluated to true for a given record during trigger processing, then this trigger action will be processed for that record.</description>
     <externalId>false</externalId>
-    <fieldManageability>DeveloperControlled</fieldManageability>
+    <fieldManageability>SubscriberControlled</fieldManageability>
     <inlineHelpText>Formula which if evaluated to true for a given record during trigger processing, then this trigger action will be processed for that record.</inlineHelpText>
     <label>Entry Criteria</label>
     <length>32768</length>
