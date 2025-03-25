@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TriggerAction_Plugin__c</fullName>
+    <description>The parent Trigger Action Plugin record</description>
+    <fieldManageability>SubscriberControlled</fieldManageability>
+    <inlineHelpText>The parent Trigger Action Plugin record</inlineHelpText>
+    <label>TriggerAction Plugin</label>
+    <referenceTo>TAF_Plugin__mdt</referenceTo>
+    <relationshipLabel>TriggerAction Plugin Parameters</relationshipLabel>
+    <relationshipName>TriggerAction_Plugin_Parameters</relationshipName>
+    <required>true</required>
+    <type>MetadataRelationship</type>
+    <unique>false</unique>
+</CustomField>

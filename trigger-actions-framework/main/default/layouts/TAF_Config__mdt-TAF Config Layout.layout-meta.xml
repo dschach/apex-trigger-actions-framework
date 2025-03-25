@@ -31,32 +31,15 @@
         <customLabel>true</customLabel>
         <detailHeading>true</detailHeading>
         <editHeading>true</editHeading>
-        <label>Finalizer Configuration</label>
-        <layoutColumns>
-            <layoutItems>
-                <behavior>Required</behavior>
-                <field>Apex_Class_Name__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Required</behavior>
-                <field>Order__c</field>
-            </layoutItems>
-        </layoutColumns>
+        <label>Configuration</label>
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Bypass_Execution__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Bypass_Permission__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Required_Permission__c</field>
+                <field>Debug_Limits__c</field>
             </layoutItems>
         </layoutColumns>
-        <style>TwoColumnsLeftToRight</style>
+        <layoutColumns/>
+        <style>TwoColumnsTopToBottom</style>
     </layoutSections>
     <layoutSections>
         <customLabel>false</customLabel>
@@ -87,13 +70,19 @@
         <layoutColumns/>
         <style>CustomLinks</style>
     </layoutSections>
+    <relatedLists>
+        <fields>MasterLabel</fields>
+        <fields>DeveloperName</fields>
+        <fields>NamespacePrefix</fields>
+        <relatedList>TAF_Plugin__mdt.TAFConfig__c</relatedList>
+    </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>
     <showInteractionLogPanel>false</showInteractionLogPanel>
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h010000012PtW</masterLabel>
+        <masterLabel>00hOz000007YsrZ</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

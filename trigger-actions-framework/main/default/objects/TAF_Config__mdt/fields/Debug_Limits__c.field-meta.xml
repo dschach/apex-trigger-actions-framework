@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Debug_Limits__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Fill this checkbox to write limits to the debug log at the beginning and end of each trigger event</description>
+    <fieldManageability>SubscriberControlled</fieldManageability>
+    <inlineHelpText>Fill this checkbox to write limits to the debug log at the beginning and end of each trigger event</inlineHelpText>
+    <label>Debug Limits</label>
+    <type>Checkbox</type>
+</CustomField>

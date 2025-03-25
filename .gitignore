@@ -4,6 +4,7 @@
 
 # Salesforce cache
 .sfdx/
+.sf/
 .localdevserver/
 
 # LWC VSCode autocomplete
@@ -35,4 +36,5 @@ node_modules
 package-lock.json
 .pmdCache
 
-.sf
+**/test-metadata/
+trigger-actions-framework/main/default/objectTranslations
